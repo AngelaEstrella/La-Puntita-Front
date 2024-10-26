@@ -1,0 +1,12 @@
+.image-container{
+    display: flex;
+    flex-direction: row;
+    margin: 1em;
+    gap: 30px;
+    padding: 10px;
+}
+
+.wasa{
+    height: 300px;
+    border-radius: 10px;
+}
