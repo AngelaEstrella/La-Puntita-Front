@@ -128,8 +128,16 @@ function ResponsiveAppBar() {
             >
               Recojo en Tienda
             </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => navigate("/login")} // Navega al componente Login
+            >
+              Iniciar Sesión
+            </Button>
           </Box>
 
+          {/*
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Configuración de usuario">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -153,6 +161,7 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
+          */}
         </Toolbar>
       </Container>
     </AppBar>
