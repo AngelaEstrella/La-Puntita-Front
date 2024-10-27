@@ -1,6 +1,6 @@
 /* Contenedor del título principal (ancho completo y centrado) */
 .titulo-container {
-    background: linear-gradient(90deg, #f8a5c2, #f78fb3);
+    background: linear-gradient(90deg, #62C3D9, #9adae9);
     padding: 15px 0; /* Ajuste de padding para que el contenedor se vea bien en toda la pantalla */
     text-align: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
@@ -14,7 +14,6 @@
     color: #594239;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-    font-family: 'Pacifico', cursive;
     margin: 0;
 }
 
