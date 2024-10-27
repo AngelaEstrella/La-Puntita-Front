@@ -120,7 +120,7 @@ export default function Login() {
                         </Button>
                         <Grid container>
                             <Grid item>
-                                <Link to="/register">
+                                <Link to="/validacion">
                                     {"¿No tienes una cuenta? Regístrate"}
                                 </Link>
                             </Grid>
