@@ -1,12 +1,12 @@
 
-export async function login(email, passw) { // Cambiar nombres a los que usa la API
+export async function login(email, passw) {
     try {
         const response = await fetch("https://proyecto-pds-24-ii-production.up.railway.app/usuarios", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email, passw }), // Enviar email y passw en lugar de correo y contraseña
+            body: JSON.stringify({ email, passw }),
         });
 
         if (!response.ok) {
@@ -14,9 +14,12 @@ export async function login(email, passw) { // Cambiar nombres a los que usa la 
         }
 
         const data = await response.json();
+        console.log("Respuesta de la API:", data); 
+
         return data;
     } catch (error) {
         console.error("Error en la solicitud:", error);
         throw error;
     }
 }
+
