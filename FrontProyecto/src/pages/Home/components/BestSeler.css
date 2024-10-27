@@ -4,18 +4,21 @@
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
-    height: 400px;
     background-color: #f58ab8;
     padding: 20px;
+    gap: 20px; /* Espacio entre imágenes */
+    min-height: 400px; /* Altura mínima para el contenedor */
 }
 
 .best-images {
-    height: 15em;
-    margin: 20px;
-    border-radius: 30px;
-    transition: transform 0.2s;
+    width: 250px; /* Ancho mayor para un mejor tamaño de visualización */
+    max-width: 100%; /* Ajusta al 100% del contenedor si es necesario */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+    margin: 10px; /* Espacio alrededor de cada imagen */
 }
 
 .best-images:hover {
-    transform: scale(1.05);
+    transform: scale(1.1); /* Aumenta el efecto de zoom */
 }

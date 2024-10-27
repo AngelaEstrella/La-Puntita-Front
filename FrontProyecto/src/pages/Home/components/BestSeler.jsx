@@ -1,23 +1,22 @@
-import Typography from '@mui/material/Typography'
-import "./BestSeler.css"
+import Typography from '@mui/material/Typography';
+import "./BestSeler.css";
+import Dinamita from '../assets/Dinamita.png';
 import Africano from '../assets/Africano.png';
-const pikachu = "https://static.vecteezy.com/system/resources/previews/024/804/557/non_2x/pikachu-art-or-illustration-on-pickachu-free-vector.jpg"
-let array = [Africano,Africano]
-export default function BestSeler(){
-    return(
+import Europeo from '../assets/Europeo.png';
+
+const productosPopulares = [Africano, Dinamita,Europeo];
+
+export default function BestSeler() {
+    return (
         <>
-        <Typography
-                variant="h4"
-            >
-                Mas Vendidos
+            <Typography variant="h4" sx={{ textAlign: 'center', marginBottom: '10px' }}>
+                Más Vendidos
             </Typography>
-        <div className="container">
-            {array.map(image =>{
-                return(
-                    <img className="best-images" src = {Africano}/>
-                )
-            } )}
-        </div>
+            <div className="container">
+                {productosPopulares.map((image, index) => (
+                    <img key={index} className="best-images" src={image} alt={`Producto popular ${index + 1}`} />
+                ))}
+            </div>
         </>
-    )
+    );
 }
