@@ -49,7 +49,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static" sx={{ bgcolor: "#f58ab8" }}>
+    <AppBar position="fixed" sx={{ bgcolor: "#f58ab8" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -293,8 +293,16 @@ function ResponsiveAppBar() {
             >
               Recojo en Tienda
             </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => navigate("/login")} // Navega al componente Login
+            >
+              Iniciar Sesión
+            </Button>
           </Box>
 
+          {/*
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Configuración de usuario">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -318,6 +326,7 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
+          */}
         </Toolbar>
       </Container>
     </AppBar>
