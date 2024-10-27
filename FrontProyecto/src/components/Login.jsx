@@ -12,7 +12,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { login } from '../services/authService'; // Importa la función de autenticación
+import { login } from '../services/autenticacion'; // Importa la función de autenticación
 
 const messages = ['Usuario logueado correctamente', 'Error, intente de nuevo'];
 
