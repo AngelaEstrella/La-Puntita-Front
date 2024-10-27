@@ -1,30 +1,39 @@
-const url= "https://proyecto-pds-24-ii-production.up.railway.app/productos"
-//const url= "https://pokeapi.co/api/v2/pokemon/ditto"
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import "./Carta.css";
 
+const url = "https://proyecto-pds-24-ii-production.up.railway.app/productos";
 
-export default function Carta(){
-        const [productos, setProductos] = useState([]) 
-        useEffect(()=>{
-                fetch(url).then(res => res.json()).then(data => {
-                        console.log(data)
-                        setProductos(data)
-                        console.log(productos)
-                })
-        }, [])
+export default function Carta() {
+    const [productos, setProductos] = useState([]);
 
+    useEffect(() => {
+        const fetchProductos = async () => {
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                setProductos(data);
+            } catch (error) {
+                console.error("Error fetching productos:", error);
+            }
+        };
 
-        console.log(productos)
-        return (
-                <>
-                <h1>Carta</h1>
-                {productos.map((producto, index) => (
-                        <>
-          <p key={index}>{producto.nombreProducto}</p>
-          <p key={index}>{producto.precioUnitario}</p>
-          </> // Cambia "nombre" según la estructura de tus datos
-        ))}
-              
-                </>
-        )
+        fetchProductos();
+    }, []);
+
+    return (
+        <div className="carta-container">
+            <h1>Carta</h1>
+            <div className="productos-lista">
+                {productos.map((producto) => (
+                    <div key={producto.idProducto} className="producto-tarjeta">
+                        <h2 className="producto-nombre">{producto.nombreProducto}</h2>
+                        <p className="producto-descripcion">
+                            {producto.descripcion || "Descripción no disponible"}
+                        </p>
+                        <p className="producto-precio">Precio: S/{producto.precioUnitario}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 }
