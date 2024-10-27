@@ -116,7 +116,7 @@ function ResponsiveAppBar() {
             
           {/* Botones de Delivery y Recojo en Tienda */}
           <Box sx={{ display: 'flex', gap: 2, marginRight: '20px' }}>
-            {/*
+            
             <Button
               variant="contained"
               color="secondary"
@@ -132,8 +132,8 @@ function ResponsiveAppBar() {
             >
               Recojo en Tienda
             </Button>
-            */}
-
+            
+            {/*
             <Button
               variant="contained"
               startIcon={<UbiIcon />}
@@ -142,7 +142,8 @@ function ResponsiveAppBar() {
             >
               ¿Cómo deseas recibir tu pedido?
             </Button>
-
+            */}
+            
             <Button
               variant="contained"
               color="secondary"
