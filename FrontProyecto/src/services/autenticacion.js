@@ -1,12 +1,12 @@
 
 export async function login(email, passw) {
     try {
-        const response = await fetch("https://proyecto-pds-24-ii-production.up.railway.app/usuarios", {
-            method: "POST",
+        
+        const response = await fetch(`https://proyecto-pds-24-ii-production.up.railway.app/usuarios?email=${encodeURIComponent(email)}&passw=${encodeURIComponent(passw)}`, {
+            method: "GET",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email, passw }),
         });
 
         if (!response.ok) {
