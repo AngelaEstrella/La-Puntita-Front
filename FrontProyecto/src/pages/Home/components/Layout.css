@@ -27,11 +27,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('ruta/de/tu/imagen.jpg');
+    background-image: url('https://i.ibb.co/Vx62xxY/1.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.2; /* Ajusta la opacidad según necesites */
+    /* opacity: 0.1; Ajusta la opacidad según necesites */
     z-index: 1;
 }
 
