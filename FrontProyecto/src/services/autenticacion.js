@@ -6,7 +6,16 @@ export async function login(email, passw) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email, passw }),
+            body: JSON.stringify({
+                telefono: "000000000",   // Número de teléfono predeterminado
+                email,                   // Correo electrónico ingresado por el usuario
+                direccion: "Dirección de ejemplo",  // Dirección predeterminada
+                referencia: "Ninguna",   // Referencia predeterminada
+                passw,                   // Contraseña ingresada por el usuario
+                dni: "12345678",         // DNI predeterminado
+                nombre: "Nombre",        // Nombre predeterminado
+                apellido: "Apellido"     // Apellido predeterminado
+            }),
         });
 
         if (!response.ok) {
@@ -14,7 +23,7 @@ export async function login(email, passw) {
         }
 
         const data = await response.json();
-        console.log("Respuesta de la API:", data); 
+        console.log("Respuesta de la API:", data); // Imprime la respuesta para verificar los datos
 
         return data;
     } catch (error) {
@@ -22,4 +31,8 @@ export async function login(email, passw) {
         throw error;
     }
 }
+
+
+
+
 
