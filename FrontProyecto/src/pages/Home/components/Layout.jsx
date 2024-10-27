@@ -12,6 +12,11 @@ export default function Layout(){
                 <img className="wasa" src="https://images-ext-1.discordapp.net/external/gKxXlGXKhcmkfOfE8Me23NX1PuPIa-Z9Cr69U6tQRo8/https/sitioshoy.com.ar/wp-content/uploads/2022/06/La-Puntita-la-casa-de-waffles-en-Palermo-que-es-furor-hacen-filas-de-dos-cuadras-para-comerlos-716x437.jpg?format=webp&width=662&height=404" />
                 <Typography
                 variant="p"
+                style={{
+                    fontSize: '24px',
+                    textAlign: 'center',
+                    //fontFamily: 'Courier New, Courier, monospace'(No me gusta el tipo de letra)
+                }}
                 >
                     Hola mundo cruel, este es un mensaje para toda mi gente latino. Este proyecto no nos vencerá, arriba mi gente latino.
                     <br />
