@@ -3,7 +3,6 @@ import ResponsiveAppBar from './components/Appbar';
 import Inicio from './pages/Home/Home';
 import Login from './components/Login';
 import Carta from './pages/Carta/Carta';
-import Contacto from './pages/Contacto/Contacto';
 
 export default function App() {
   return (
