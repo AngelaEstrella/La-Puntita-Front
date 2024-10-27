@@ -1,16 +1,35 @@
+
+/* Título principal */
+.titulo-principal {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #D984AC;
+    text-align: left;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Contenedor de la imagen */
 .image-container {
     display: flex;
-    flex-direction: row;
-    gap: 30px;
-    padding: 10px;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* Estilos para la imagen */
 .wasa {
-    height: 300px;
-    border-radius: 10px;
-    transition: transform 0.2s;
+    width: 100%;
+    max-width: 662px;
+    height: auto;
 }
 
+/* Cambio de la imagen al pasar el cursor */
 .wasa:hover {
     transform: scale(1.05);
+}
+
+/* Estilos del texto */
+.texto-central {
+    font-size: 24px;
+    text-align: center;
 }
