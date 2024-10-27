@@ -5,6 +5,14 @@ export default function Layout(){
         <div>
             <Typography
                 variant="h1"
+                style={{
+                    fontSize: '5rem', // Adjust font size to make it prominent
+                    fontWeight: 'bold',
+                    color: '#fd547d', // Use a bold red or similar eye-catching color
+                    textAlign: 'left',
+                    marginBottom: '20px',
+                    textShadow: '2px 2px 4px rgba(0,0,0,0.2)'
+                }}
             >
                 Nosotros
             </Typography>

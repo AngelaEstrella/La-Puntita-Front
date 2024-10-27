@@ -46,8 +46,8 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
-  return (
-    <AppBar position="static" sx={{bgcolor:"pink"}}>
+  return ( //Barra superior color rosado 
+    <AppBar position="static" sx={{bgcolor:"#f58ab8"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
