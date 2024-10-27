@@ -1,15 +1,21 @@
-.container{
+.container {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     width: 100%;
     height: 400px;
     background-color: #f58ab8;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+    padding: 20px;
 }
 
-.best-images{
+.best-images {
     height: 15em;
     margin: 20px;
-    align-self: center;
+    border-radius: 30px;
+    transition: transform 0.2s;
+}
+
+.best-images:hover {
+    transform: scale(1.05);
 }
