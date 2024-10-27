@@ -3,6 +3,7 @@ import ResponsiveAppBar from './components/Appbar';
 import Inicio from './pages/Home/Home';
 import Login from './components/Login';
 import Carta from './pages/Carta/Carta';
+import Register from './components/Register';
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <div className="App">
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/*"
             element={
