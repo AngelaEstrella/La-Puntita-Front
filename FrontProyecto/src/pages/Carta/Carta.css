@@ -1,4 +1,3 @@
-/* Estilos para el contenedor de la carta */
 .carta-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -8,21 +7,19 @@
     text-align: center;
 }
 
-.carta-container h1 {
+.productos-lista h2 {
     color: #f58ab8;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
-/* Contenedor de productos */
-.productos-lista {
+.waffles-lista, .toppings-lista, .bebidas-lista {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    margin-top: 10px;
 }
 
-/* Tarjeta de cada producto */
 .producto-tarjeta {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -31,28 +28,37 @@
     width: 250px;
     padding: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
-.producto-tarjeta:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+.producto-tarjeta.selected {
+    border-color: #f58ab8;
+    box-shadow: 0 6px 12px rgba(255, 2, 179, 0.164);
+    transform: scale(1.1);
 }
 
-/* Estilos para los textos dentro de la tarjeta */
 .producto-nombre {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #333;
-    margin-bottom: 10px;
-}
-
-.producto-descripcion {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 15px;
 }
 
 .producto-precio {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #f58ab8;
+}
+
+.add-to-cart {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f58ab8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.add-to-cart:hover {
+    background-color: #e04892;
 }
