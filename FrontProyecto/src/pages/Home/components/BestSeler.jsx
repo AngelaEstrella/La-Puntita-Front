@@ -1,8 +1,8 @@
 import Typography from '@mui/material/Typography'
 import "./BestSeler.css"
+import Africano from '../assets/Africano.png';
 const pikachu = "https://static.vecteezy.com/system/resources/previews/024/804/557/non_2x/pikachu-art-or-illustration-on-pickachu-free-vector.jpg"
-const Africano = '../assets/Africano.png'
-let array = [pikachu,pikachu,pikachu,pikachu,Africano]
+let array = [Africano,Africano]
 export default function BestSeler(){
     return(
         <>
@@ -14,7 +14,7 @@ export default function BestSeler(){
         <div className="container">
             {array.map(image =>{
                 return(
-                    <img className="best-images" src = {pikachu}/>
+                    <img className="best-images" src = {Africano}/>
                 )
             } )}
         </div>
