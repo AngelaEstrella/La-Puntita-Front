@@ -1,0 +1,58 @@
+/* Estilos para el contenedor de la carta */
+.carta-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffe6f0;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.carta-container h1 {
+    color: #f58ab8;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Contenedor de productos */
+.productos-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Tarjeta de cada producto */
+.producto-tarjeta {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto-tarjeta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilos para los textos dentro de la tarjeta */
+.producto-nombre {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.producto-descripcion {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.producto-precio {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f58ab8;
+}
