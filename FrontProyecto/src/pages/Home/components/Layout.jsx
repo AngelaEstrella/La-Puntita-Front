@@ -14,6 +14,7 @@ export default function Layout(){
                 variant="p"
                 >
                     Hola mundo cruel, este es un mensaje para toda mi gente latino. Este proyecto no nos vencerá, arriba mi gente latino.
+                    Los Waffles más Hot 🥵 La Puntita no se lame, se Muerde 🍌
                 </Typography>
                 </div>
         </div>
