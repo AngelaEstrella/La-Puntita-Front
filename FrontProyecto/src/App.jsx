@@ -7,7 +7,7 @@ import Carta from './pages/Carta/Carta';
 export default function App() {
   return (
     <Router>
-      <div className="Appcontainer">
+      <div className="App">
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route
