@@ -37,3 +37,15 @@
     background-color: rgba(253, 84, 125, 0.1);
     border-color: #fd547d;
 }
+
+.iniciarSesionButton {
+    background-color: #fd547d;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.iniciarSesionButton:hover {
+    background-color: #f7a4bb;
+}
+
