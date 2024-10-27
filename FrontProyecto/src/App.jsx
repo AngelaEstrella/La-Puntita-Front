@@ -21,7 +21,7 @@ export default function App() {
                   <Route path="/ventas" element={<h1>Ventas</h1>} />
                   {/* Rutas para Delivery y Recojo en tienda */}
                   <Route path="/delivery" element={<h1>Delivery</h1>} />
-                  <Route path="/pickup" element={<h1>Recojo en tienda</h1>} />
+                  <Route path="/pickup" element={<h1>Login</h1>} />
                 </Routes>
               </>
             }

@@ -1,13 +1,15 @@
 import Typography from '@mui/material/Typography';
 import "./BestSeler.css";
+import Dinamita from '../assets/Dinamita.png';
+import Africano from '../assets/Africano.png';
+import Europeo from '../assets/Europeo.png';
 
-const pikachu = "https://static.vecteezy.com/system/resources/previews/024/804/557/non_2x/pikachu-art-or-illustration-on-pickachu-free-vector.jpg";
-const productosPopulares = [pikachu, pikachu, pikachu, pikachu]; // Array de productos populares
+const productosPopulares = [Africano, Dinamita,Europeo];
 
 export default function BestSeler() {
     return (
         <>
-            <Typography variant="h4" sx={{ textAlign: 'center', marginBottom: '20px' }}>
+            <Typography variant="h4" sx={{ textAlign: 'center', marginBottom: '10px' }}>
                 Más Vendidos
             </Typography>
             <div className="container">

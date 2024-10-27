@@ -13,6 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
+import UbiIcon from '@mui/icons-material/LocationOn';
+
 
 const pages = ['Inicio', 'Carta', 'Promociones', 'Contacto'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -111,9 +113,10 @@ function ResponsiveAppBar() {
               </Button>
             ))}
           </Box>
-
+            
           {/* Botones de Delivery y Recojo en Tienda */}
           <Box sx={{ display: 'flex', gap: 2, marginRight: '20px' }}>
+            {/*
             <Button
               variant="contained"
               color="secondary"
@@ -121,6 +124,7 @@ function ResponsiveAppBar() {
             >
               Delivery
             </Button>
+
             <Button
               variant="outlined"
               color="secondary"
@@ -128,6 +132,18 @@ function ResponsiveAppBar() {
             >
               Recojo en Tienda
             </Button>
+            */}
+            
+            <Button
+              variant="contained"
+              startIcon={<UbiIcon />}
+              color="secondary"
+              classname="deliveryButton"
+            >
+              ¿Cómo deseas recibir tu pedido?
+            </Button>
+            
+            
             <Button
               variant="contained"
               color="secondary"
