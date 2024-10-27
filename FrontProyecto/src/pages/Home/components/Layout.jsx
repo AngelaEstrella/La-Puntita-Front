@@ -5,7 +5,7 @@ export default function Layout() {
     return (
         <div>
             <div className="titulo-container">
-                <Typography className="titulo-principal">
+                <Typography variant="h4"className="titulo-principal">
                     SOBRE NOSOTROS
                 </Typography>
             </div>
