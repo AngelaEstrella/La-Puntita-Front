@@ -4,9 +4,11 @@ import "./Layout.css";
 export default function Layout() {
     return (
         <div>
-            <Typography variant="h2" className="titulo-principal">
-                Sobre nosotros
-            </Typography>
+            <div className="titulo-container">
+                <Typography className="titulo-principal">
+                    SOBRE NOSOTROS
+                </Typography>
+            </div>
             <div className="image-container">
                 <img
                     className="wasa"
