@@ -1,59 +1,36 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Contacto.css';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 const Contacto = () => {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    mensaje: ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aquí iría la lógica de envío de datos al backend
-    console.log('Formulario enviado:', formData);
-  };
-
   return (
     <div className="contacto-container">
-      <h2>Contacto</h2>
-      <form onSubmit={handleSubmit} className="contacto-form">
-        <label htmlFor="nombre">Nombre:</label>
-        <input
-          type="text"
-          id="nombre"
-          name="nombre"
-          value={formData.nombre}
-          onChange={handleChange}
-          required
-        />
-        
-        <label htmlFor="email">Correo Electrónico:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        
-        <label htmlFor="mensaje">Mensaje:</label>
-        <textarea
-          id="mensaje"
-          name="mensaje"
-          value={formData.mensaje}
-          onChange={handleChange}
-          required
-        ></textarea>
-        
-        <button type="submit">Enviar</button>
-      </form>
+      <h2>#Contáctanos</h2>
+      <div className="social-links">
+        <div className="social-item">
+          <a
+            href="https://wa.me/tu_numero_de_telefono"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-link"
+          >
+            <WhatsAppIcon className="social-icon" />
+          </a>
+          <p>whatsapp</p>
+        </div>
+        <div className="social-item">
+          <a
+            href="https://www.instagram.com/lapuntita.peru/?hl=es"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-link"
+          >
+            <InstagramIcon className="social-icon" />
+          </a>
+          <p>@lapuntita.peru</p>
+        </div>
+      </div>
     </div>
   );
 };
