@@ -4,7 +4,7 @@ import "./Layout.css";
 export default function Layout() {
     return (
         <div>
-            <Typography variant="h1" className="titulo-principal">
+            <Typography variant="h2" className="titulo-principal">
                 Sobre nosotros
             </Typography>
             <div className="image-container">
