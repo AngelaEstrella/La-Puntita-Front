@@ -14,12 +14,15 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Password } from '@mui/icons-material';
 
 const message = ['Usuario logueado correctamente', 'Error, Intente de nuevo'];
 const url="https://proyecto-pds-24-ii-production.up.railway.app/usuarios";
 
 export default function Login() {
     
+    const navigate = useNavigation();
+
     const [isMod, setIsMod] = useState(false);
     const [openAlert, setOpenAlert] = useState(false);
     const [correo, setCorreo] = useState(""); // Cambiar código a correo
@@ -28,6 +31,7 @@ export default function Login() {
 
     const handleCloseAlert = () => {
         setOpenAlert(false);
+        navigate('/')
     }
 
     const handleCheckboxChange = (event) => {
@@ -37,8 +41,24 @@ export default function Login() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(correo, contraseña);
+
+        fetch(url,{
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: correo,
+                password: contraseña
+            })
+        }).then(res => 
+            res.json()
+        ).then(data => {
+            console.log(data.usuario)
        
-        
+            setOpenAlert(true);
+
+        })
     }
 
     const handleInputChange = (e, setter) => {
