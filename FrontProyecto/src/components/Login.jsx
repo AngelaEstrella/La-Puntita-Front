@@ -29,13 +29,14 @@ export default function Login() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+    
         try {
-            const data = await login(correo, contraseña); // Llama a la función de autenticación
-            if (data.success) { // Ajusta esto según el formato de respuesta de tu API
+            // Llama a la función de autenticación con los nombres correctos
+            const data = await login(correo, contraseña); // Asegúrate de que correspondan a email y passw en la API
+            if (data.success) { // Ajusta según el formato de respuesta de tu API
                 setError(false);
                 setOpenAlert(true);
-                navigate("/"); // Redirige al usuario después de un login exitoso
+                navigate("/"); // Redirige al inicio después del inicio de sesión exitoso
             } else {
                 setError(true);
                 setOpenAlert(true);
