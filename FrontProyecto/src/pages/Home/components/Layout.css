@@ -1,9 +1,8 @@
 
 /* Título principal */
 .titulo-principal {
-    font-size: 5rem;
-    font-weight: bold;
-    color: #D984AC;
+    font-size: 4rem;
+    color: #d475a2;
     text-align: left;
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
