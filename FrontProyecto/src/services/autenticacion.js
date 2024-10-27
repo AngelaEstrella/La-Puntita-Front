@@ -1,12 +1,21 @@
 
-export async function login(email, passw) {
+export async function login(email, passw, telefono, direccion, referencia, nombre, apellido, dni) {
     try {
         const response = await fetch("https://proyecto-pds-24-ii-production.up.railway.app/usuarios", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email, passw }), // Envía los datos en el cuerpo de la solicitud
+            body: JSON.stringify({
+                telefono,         // Número de teléfono
+                email,            // Correo electrónico
+                direccion,        // Dirección
+                referencia,       // Referencia adicional (puede ser null)
+                passw,            // Contraseña
+                dni,              // DNI del usuario
+                nombre,           // Nombre del usuario
+                apellido,         // Apellido del usuario
+            }),
         });
 
         if (!response.ok) {
@@ -14,7 +23,7 @@ export async function login(email, passw) {
         }
 
         const data = await response.json();
-        console.log("Respuesta de la API:", data); // Imprime la respuesta para verificar
+        console.log("Respuesta de la API:", data); // Para verificar la estructura de la respuesta
 
         return data;
     } catch (error) {
@@ -22,5 +31,8 @@ export async function login(email, passw) {
         throw error;
     }
 }
+
+
+
 
 

@@ -20,6 +20,12 @@ export default function Login() {
     const [openAlert, setOpenAlert] = useState(false);
     const [correo, setCorreo] = useState("");
     const [contraseña, setContraseña] = useState("");
+    const [telefono, setTelefono] = useState("");
+    const [direccion, setDireccion] = useState("");
+    const [referencia, setReferencia] = useState("");
+    const [nombre, setNombre] = useState("");
+    const [apellido, setApellido] = useState("");
+    const [dni, setDni] = useState("");
     const [error, setError] = useState(false);
     const navigate = useNavigate();
 
@@ -31,9 +37,11 @@ export default function Login() {
         event.preventDefault();
     
         try {
-            // Llama a la función de autenticación con los nombres correctos
-            const data = await login(correo, contraseña); // Asegúrate de que correspondan a email y passw en la API
-            if (data.success) { // Ajusta según el formato de respuesta de tu API
+            // Llama a la función de autenticación con los 8 parámetros necesarios
+            const data = await login(correo, contraseña, telefono, direccion, referencia, nombre, apellido, dni);
+
+            // Verifica la respuesta de la API (ajustando a la estructura de tu API)
+            if (data && data.idUsuario && data.correoVerificado === 1) { // Suponiendo que correoVerificado = 1 indica autenticación exitosa
                 setError(false);
                 setOpenAlert(true);
                 navigate("/"); // Redirige al inicio después del inicio de sesión exitoso
@@ -85,39 +93,15 @@ export default function Login() {
                 <Box sx={{ my: 4, mx: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <Typography component="h1" variant="h5">Iniciar sesión</Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="correo"
-                            label="Correo"
-                            autoComplete="email"
-                            value={correo}
-                            onChange={(e) => setCorreo(e.target.value)}
-                            error={correo.length === 0}
-                            helperText={correo.length === 0 ? "Correo no válido" : ""}
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="contraseña"
-                            label="Contraseña"
-                            type="password"
-                            autoComplete="current-password"
-                            value={contraseña}
-                            onChange={(e) => setContraseña(e.target.value)}
-                            error={contraseña.length === 0}
-                            helperText={contraseña.length === 0 ? "Contraseña no válida" : ""}
-                        />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ my: 2, backgroundColor: '#4caf50', '&:hover': { backgroundColor: '#66bb6a' } }}
-                        >
-                            Autenticar
-                        </Button>
+                        <TextField margin="normal" required fullWidth id="correo" label="Correo" autoComplete="email" value={correo} onChange={(e) => setCorreo(e.target.value)} />
+                        <TextField margin="normal" required fullWidth name="contraseña" label="Contraseña" type="password" autoComplete="current-password" value={contraseña} onChange={(e) => setContraseña(e.target.value)} />
+                        <TextField margin="normal" required fullWidth id="telefono" label="Teléfono" value={telefono} onChange={(e) => setTelefono(e.target.value)} />
+                        <TextField margin="normal" required fullWidth id="direccion" label="Dirección" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
+                        <TextField margin="normal" fullWidth id="referencia" label="Referencia" value={referencia} onChange={(e) => setReferencia(e.target.value)} />
+                        <TextField margin="normal" required fullWidth id="nombre" label="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+                        <TextField margin="normal" required fullWidth id="apellido" label="Apellido" value={apellido} onChange={(e) => setApellido(e.target.value)} />
+                        <TextField margin="normal" required fullWidth id="dni" label="DNI" value={dni} onChange={(e) => setDni(e.target.value)} />
+                        <Button type="submit" fullWidth variant="contained" sx={{ my: 2, backgroundColor: '#4caf50', '&:hover': { backgroundColor: '#66bb6a' } }}>Autenticar</Button>
                         <Grid container>
                             <Grid item>
                                 <Link to="/validacion">
@@ -131,6 +115,8 @@ export default function Login() {
         </Grid>
     );
 }
+
+
 
 
 /*Version 1.2
