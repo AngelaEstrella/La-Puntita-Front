@@ -1,16 +1,16 @@
-.image-container{
+.image-container {
     display: flex;
     flex-direction: row;
-    margin: 1em;
     gap: 30px;
     padding: 10px;
 }
 
-.wasa{
+.wasa {
     height: 300px;
     border-radius: 10px;
+    transition: transform 0.2s;
 }
-h1{
-    color: pink;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+.wasa:hover {
+    transform: scale(1.05);
 }

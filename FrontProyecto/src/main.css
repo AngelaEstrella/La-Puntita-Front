@@ -1,6 +1,23 @@
-*{
-    background-color: black;
-    color: white;
+/* Estilos Globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-  
+/* Fondo oscuro y texto claro por defecto */
+body {
+    background-color: #ffe6f7;
+    color: #000000;
+    font-family: Arial, sans-serif;
+}
+
+/* Opcional: estilo para links */
+a {
+    color: #f7bdda; /* Color de links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

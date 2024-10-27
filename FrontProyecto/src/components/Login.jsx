@@ -1,6 +1,126 @@
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogTitle from '@mui/material/DialogTitle';
+import { IconButton } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+const messages = ['Usuario logueado correctamente', 'Error, intente de nuevo'];
+
+export default function Login() {
+    const [openAlert, setOpenAlert] = useState(false);
+    const [correo, setCorreo] = useState("");
+    const [contraseña, setContraseña] = useState("");
+    const [error, setError] = useState(false);
+
+    const handleCloseAlert = () => {
+        setOpenAlert(false);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(correo, contraseña);
+        setOpenAlert(true);
+        setError(correo.length === 0 || contraseña.length === 0);
+    };
+
+    return (
+        <Grid container component="main" sx={{ height: '100vh' }}>
+            <Dialog
+                open={openAlert}
+                onClose={handleCloseAlert}
+                aria-labelledby="alert-dialog-title"
+            >
+                <DialogTitle id="alert-dialog-title">{error ? messages[1] : messages[0]}</DialogTitle>
+                <DialogActions>
+                    <Button onClick={handleCloseAlert} color="primary" autoFocus>
+                        Continuar
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+            <CssBaseline />
+            <Grid
+                item
+                xs={false}
+                sm={4}
+                md={7}
+                sx={{
+                    backgroundImage: 'url(https://cuponassets.cuponatic-latam.com/backendPe/uploads/imagenes_descuentos/112015/6970a428ea729716bb0cc2b968be11f4f0ccbc06.XL2.jpg)',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'top',
+                }}
+            />
+            <Link to="/">
+                <IconButton sx={{ position: 'absolute', backgroundColor: '#DDE2E5', color: 'gray', m: 2 }}>
+                    <ArrowBackIcon />
+                </IconButton>
+            </Link>
+
+            <Grid item xs={12} sm={8} md={5} component={Paper} square>
+                <Box sx={{ my: 4, mx: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <Typography component="h1" variant="h5">Iniciar sesión</Typography>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="correo"
+                            label="Correo"
+                            autoComplete="email"
+                            value={correo}
+                            onChange={(e) => setCorreo(e.target.value)}
+                            error={correo.length === 0}
+                            helperText={correo.length === 0 ? "Correo no válido" : ""}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="contraseña"
+                            label="Contraseña"
+                            type="password"
+                            autoComplete="current-password"
+                            value={contraseña}
+                            onChange={(e) => setContraseña(e.target.value)}
+                            error={contraseña.length === 0}
+                            helperText={contraseña.length === 0 ? "Contraseña no válida" : ""}
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{ my: 2, backgroundColor: '#4caf50', '&:hover': { backgroundColor: '#66bb6a' } }}
+                        >
+                            Autenticar
+                        </Button>
+                        <Grid container>
+                            <Grid item>
+                                <Link to="/validate">
+                                    {"¿No tienes una cuenta? Regístrate"}
+                                </Link>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Box>
+            </Grid>
+        </Grid>
+    );
+}
+
+/*VERSION ANTES DE LOS CAMBIOS:
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
@@ -149,3 +269,4 @@ export default function Login() {
         </Grid>
     );
 }
+    */
