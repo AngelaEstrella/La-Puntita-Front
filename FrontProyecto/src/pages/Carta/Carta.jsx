@@ -86,12 +86,28 @@ export default function Carta() {
         }
     };
 
+    const handleRemoveFromCart = (id) => {
+        setCarrito((prev) => prev.filter((item) => item.id !== id));
+    };
+
+    const calcularTotal = () => {
+        return carrito.reduce((total, item) => {
+            const toppingTotal = item.toppings.reduce((sum, topping) => sum + topping.precioUnitario, 0);
+            const bebidaPrecio = item.bebida ? item.bebida.precioUnitario : 0;
+            const subtotal = (item.producto.precioUnitario + toppingTotal + bebidaPrecio) * item.cantidad;
+            return total + subtotal;
+        }, 0);
+    };
+
+    const handleCheckout = () => {
+        alert("Ir a la página de pago (futuro desarrollo).");
+    };
+
     return (
         <div className="carta-container">
             <h1>Carta</h1>
             
             <div className="productos-lista">
-                {/* NUESTRAS PUNTITAS */}
                 <h2>NUESTRAS PUNTITAS</h2>
                 <div className="waffles-lista">
                     {waffles.filter((waffle) => puntitas.includes(waffle.nombreProducto)).map((waffle) => (
@@ -102,7 +118,6 @@ export default function Carta() {
                     ))}
                 </div>
 
-                {/* NUESTRAS CUQUITAS */}
                 <h2>NUESTRAS CUQUITAS</h2>
                 <div className="waffles-lista">
                     {waffles.filter((waffle) => cuquitas.includes(waffle.nombreProducto)).map((waffle) => (
@@ -113,7 +128,6 @@ export default function Carta() {
                     ))}
                 </div>
 
-                {/* NUESTRAS MAXIPIZZAS */}
                 <h2>NUESTRAS MAXIPIZZAS</h2>
                 <div className="waffles-lista">
                     {productos.filter((product) => maxipizzas.includes(product.nombreProducto)).map((product) => (
@@ -124,7 +138,6 @@ export default function Carta() {
                     ))}
                 </div>
 
-                {/* NUESTRAS BEBIDAS */}
                 <h2>NUESTRAS BEBIDAS</h2>
                 <div className="bebidas-lista">
                     {bebidas.map((bebida) => (
@@ -140,7 +153,6 @@ export default function Carta() {
                     <div className="extras-container">
                         <h2>Selecciona tus extras</h2>
 
-                        {/* Toppings Section */}
                         <h3>Toppings (Máximo 3)</h3>
                         <div className="extras-options">
                             {toppings.map((topping) => (
@@ -155,7 +167,6 @@ export default function Carta() {
                             ))}
                         </div>
 
-                        {/* Bebida Section */}
                         <h3>Bebida (Seleccione 1)</h3>
                         <div className="extras-options">
                             {bebidas.map((bebida) => (
@@ -173,7 +184,6 @@ export default function Carta() {
                     </div>
                 )}
 
-                {/* Bebidas - Solo para maxipizzas */}
                 {selectedMaxipizza && (
                     <div className="extras-container">
                         <h2>Selecciona tu bebida</h2>
@@ -193,7 +203,28 @@ export default function Carta() {
                     </div>
                 )}
 
-                <button className="add-to-cart" onClick={handleAddToCart}>Añadir al Carrito</button>
+                <div className="floating-cart-button">
+                    {carrito.length === 20 || <button className="add-to-cart" onClick={handleAddToCart}>Añadir al Carrito</button>}
+                </div>
+            </div>
+
+            {/* Carrito Sidebar */}
+            <div className="carrito">
+                <h2>Carrito</h2>
+                {carrito.map((item) => (
+                    <div key={item.id} className="carrito-item">
+                        <h3>{item.producto.nombreProducto}</h3>
+                        <p>Cantidad: {item.cantidad}</p>
+                        {item.toppings.length > 0 && <p>Toppings: {item.toppings.map(t => t.nombreProducto).join(", ")}</p>}
+                        {item.bebida && <p>Bebida: {item.bebida.nombreProducto}</p>}
+                        <p>Subtotal: S/{(item.producto.precioUnitario + item.toppings.reduce((sum, topping) => sum + topping.precioUnitario, 0) + (item.bebida ? item.bebida.precioUnitario : 0)) * item.cantidad}</p>
+                        <button className="remove-item" onClick={() => handleRemoveFromCart(item.id)}>Eliminar</button>
+                    </div>
+                ))}
+                <h3>Total: S/{calcularTotal()}</h3>
+                <button className="checkout-button" onClick={handleCheckout}>
+                    Pagar
+                </button>
             </div>
         </div>
     );
