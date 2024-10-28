@@ -42,7 +42,10 @@
 }
 
 .dot.active {
+    transform: scale(1.4);
     background-color: #f263a6;
+
 }
+
 
 
