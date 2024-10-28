@@ -4,10 +4,10 @@ import './layout.css';
 export default function Layout() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const images = [
-        'https://i.pinimg.com/736x/80/e2/5c/80e25c2cec16d99e3b681167348132b8.jpg',
-        'https://www.pngkit.com/png/detail/383-3832200_bts-plant-pot-stickers-individual-bts-png-individual.png',
-        'https://dslv9ilpbe7p1.cloudfront.net/-27HuMrq16pc9W0_64ufyQ_store_banner_image.png',
-        'https://kpopfevershop.com/wp-content/uploads/2019/01/Banners-CardsIMG_1994.jpg'
+        'https://i.ibb.co/Wcfz2x0/Banner-Principal-La-Puntita.png',
+        'https://i.ibb.co/yNYjR5Y/Lapuntita-Halloween-renderizada.png',
+        'https://i.ibb.co/SnxtZh9/Nivel-Puntita.png',
+        'https://i.ibb.co/ZSn2J9Y/Lapuntita-Delivery.png'
     ];
 
     useEffect(() => {
@@ -22,6 +22,7 @@ export default function Layout() {
     };
 
     return (
+        
         <div className="slider-container">
             <div
                 className="slider"
