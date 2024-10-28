@@ -12,7 +12,7 @@ export default function App() {
       <div className="App">
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/validate" element={<Validate />} />
+          {/*<Route path="/validate" element={<Validate />} />*/}
           <Route
             path="/*"
             element={
