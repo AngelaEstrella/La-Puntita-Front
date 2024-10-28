@@ -23,8 +23,8 @@ export default function Validate() {
     const [openAlert, setOpenAlert] = useState(false);
     const [error, setError] = useState(false);
 
-    const [codigo, setCodigo] = useState(""); // Cambiar email a codigo
-    const [dni, setDni] = useState(""); // Cambiar password a dni
+    const [email, setEmail] = useState(""); // Cambiar email a codigo
+    const [password, setPassword] = useState(""); // Cambiar password a dni
 
     const handleCloseAlert = () => {
         setOpenAlert(false);
@@ -45,8 +45,8 @@ export default function Validate() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                codigo: emmail ? email : "No ingresado", // Cambiar email a codigo
-                dni: password ? password : "No ingresado" // Cambiar password a dni
+                email: email ? email : "No ingresado", // Cambiar email a codigo
+                password: password ? password : "No ingresado" // Cambiar password a dni
             })
         }).then(res =>{
             console.log(res.status)
@@ -152,7 +152,7 @@ export default function Validate() {
                             autoComplete="codigo" // Cambiar autoComplete a codigo
                             autoFocus
                             value={codigo}
-                            onChange={(e) => handleInputChange(e, setCodigo)} // Cambiar setEmail a setCodigo
+                            onChange={(e) => handleInputChange(e, setEmailS)} // Cambiar setEmail a setCodigo
                             inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} // Solo permite números
                             sx={{
                                 '& .MuiOutlinedInput-root': {
