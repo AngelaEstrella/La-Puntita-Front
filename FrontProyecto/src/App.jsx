@@ -4,6 +4,7 @@ import Inicio from './pages/Home/Home';
 import Login from './components/Login';
 import Carta from './pages/Carta/Carta';
 import Contacto from './pages/Contacto/Contacto';
+import Validate from './components/validate';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <div className="App">
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/validate" element={<Validate />} />
           <Route
             path="/*"
             element={

@@ -51,7 +51,7 @@ export default function Login() {
         }).then(res => 
             res.json()
         ).then(data => {
-            console.log(data.usuario)
+            console.log(data.usuarios)
        
             setOpenAlert(true);
 
