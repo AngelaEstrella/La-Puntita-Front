@@ -8,6 +8,8 @@ const puntitas = ["Latino", "Suggar daddy", "Europeo", "Africano", "Dinamita"];
 const cuquitas = ["Cocolover", "Europea", "Pichanguera", "Power", "Malcriada"];
 const maxipizzas = ["Moreno", "Gringo", "Vergano", "Juguetón", "Carnoso"];
 
+// Función para obtener la ruta de la imagen de un producto
+const getImagePath = (nombreProducto) => `/ImagenCarta/${nombreProducto.replace(" ", "")}.png`;
 export default function Carta() {
     const [productos, setProductos] = useState([]);
     const [waffles, setWaffles] = useState([]);

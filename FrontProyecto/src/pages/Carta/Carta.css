@@ -2,7 +2,7 @@
 .carta-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 80px;
     background-color: #ffe6f0;
     border-radius: 15px;
     display: flex;
@@ -14,17 +14,17 @@
 /* Título principal */
 .carta-container h1 {
     color: #f58ab8;
-    font-size: 2.8rem;
+    font-size: 4rem;
     font-weight: bold;
     text-align: center;
-    margin-top: 0;
+    margin-top: -50px;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Subtítulos de categorías */
 .productos-lista h2 {
     color: #d94784;
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: bold;
     margin-top: 30px;
     text-align: left;
@@ -37,9 +37,9 @@
 .waffles-lista, .toppings-lista, .bebidas-lista {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 /* Estilo de cada tarjeta de producto */
@@ -69,10 +69,10 @@
 
 /* Nombre y precio de cada producto */
 .producto-nombre {
-    font-size: 1.4rem;
+    font-size: 1rem;
     color: #d94784;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 1px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
