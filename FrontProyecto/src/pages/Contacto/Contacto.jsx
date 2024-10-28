@@ -57,8 +57,8 @@ const Contacto = () => {
                 <div className="store-image">
                     <iframe
                     src="https://www.google.com/maps/embed?pb=!3m2!1ses-419!2spe!4v1730079556561!5m2!1ses-419!2spe!6m8!1m7!1sQ1Xti66rkvW79Tf5gIkXNQ!2m2!1d-12.12217309292359!2d-77.03176805129874!3f202.29309254133958!4f2.910552690123737!5f0.7820865974627469"
-                    width="100%"
-                    height="150"
+                    width="200%"
+                    height="300"
                     style={{ border: 0 }}
                     allowFullScreen=""
                     loading="lazy"
