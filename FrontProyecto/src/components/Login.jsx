@@ -51,19 +51,11 @@ export default function Login() {
         }).then(res => 
             res.json()
         ).then(data => {
-        // Asumiendo que la respuesta contiene una propiedad "success"
-        if (data.success) {  // Ajusta esta línea según la respuesta real del servidor
-            setError(false);
-        } else {
-            setError(true);
-        }
-        setOpenAlert(true);
-
-        })
-        .catch(() => {
-            setError(true);
+            console.log(data.usuarios)
+       
             setOpenAlert(true);
-        });
+    
+        })
     }
 
     const handleInputChange = (e, setter) => {
