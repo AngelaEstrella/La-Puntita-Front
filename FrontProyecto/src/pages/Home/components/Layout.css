@@ -1,106 +1,48 @@
-/* Contenedor del título principal (ancho completo y centrado) */
-.titulo-container {
-    background: linear-gradient(90deg, #62C3D9, #9adae9);
-    padding: 15px 0; /* Ajuste de padding para que el contenedor se vea bien en toda la pantalla */
-    text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
-    margin: 0 auto; /* Centra el contenedor */
-}
+/* layout.css */
 
-/* Título principal */
-.titulo-principal {
-    font-size: 5rem;
-    color: #594239;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-    margin: 0;
-}
-
-/* texto responsive */
-@media (max-width: 768px) {
-    .titulo-principal {
-        font-size: 6rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .titulo-principal {
-        font-size: 5rem;
-    }
-}
-
-/* Contenedor de la imagen */
-.image-container {
+/* Contenedor del slider */
+.slider-container {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 60vh;
+    max-height: 600px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
 }
 
-.image-container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('https://i.ibb.co/Vx62xxY/1.png');
+/* Estilo de la imagen del slider */
+.slider {
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    /* opacity: 0.1; Ajusta la opacidad según necesites */
-    z-index: 1;
+    transition: background-image 0.8s ease-in-out;
 }
 
-.image-container * {
-    position: relative;
-    z-index: 2;
+/* Contenedor de los puntos de navegación */
+.dots-container {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
-
-/* Estilos para la imagen */
-.wasa {
-    width: 100%;
-    max-width: 662px;
-    height: auto;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    border-radius: 10px;
-}
-
-/* Cambio de la imagen al pasar el cursor */
-.wasa:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-/* Estilos del texto central */
-.texto-central {
-    font-size: 1.5rem;
-    text-align: center;
-    color: #594239;
-    margin-top: 20px;
-    font-family: 'Roboto', sans-serif;
-    max-width: 600px;
-    line-height: 1.6;
-}
-
-/* Ajuste del botón o enlace de “Más Vendidos” */
-.mas-vendidos {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-top: 30px;
-    color: #d16f9d;
-    font-weight: bold;
+/* Puntos de navegación */
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #e0a7c2;
     cursor: pointer;
-    transition: color 0.3s ease-in-out;
+    transition: background-color 0.3s ease;
 }
 
-.mas-vendidos:hover {
-    color: #9b2c6a;
+.dot.active {
+    background-color: #f263a6;
 }
+
 

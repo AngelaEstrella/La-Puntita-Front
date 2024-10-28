@@ -1,27 +1,42 @@
-import Typography from '@mui/material/Typography';
-import "./Layout.css";
-import { createTheme } from '@mui/material';
+import { useState, useEffect } from 'react';
+import './layout.css';
 
 export default function Layout() {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const images = [
+        'https://i.pinimg.com/736x/80/e2/5c/80e25c2cec16d99e3b681167348132b8.jpg',
+        'https://www.pngkit.com/png/detail/383-3832200_bts-plant-pot-stickers-individual-bts-png-individual.png',
+        'https://dslv9ilpbe7p1.cloudfront.net/-27HuMrq16pc9W0_64ufyQ_store_banner_image.png',
+        'https://kpopfevershop.com/wp-content/uploads/2019/01/Banners-CardsIMG_1994.jpg'
+    ];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }, 3000); // Cambia cada 3 segundos
+        return () => clearInterval(interval);
+    }, [images.length]);
+
+    const handleDotClick = (index) => {
+        setCurrentIndex(index);
+    };
+
     return (
-        <div>
-            <div className="titulo-container">
-                <Typography variant="h4"className="titulo-principal">
-                    SOBRE NOSOTROS
-                </Typography>
-            </div>
-            <div className="image-container">
-                <img
-                    className="wasa"
-                    src="https://images-ext-1.discordapp.net/external/gKxXlGXKhcmkfOfE8Me23NX1PuPIa-Z9Cr69U6tQRo8/https/sitioshoy.com.ar/wp-content/uploads/2022/06/La-Puntita-la-casa-de-waffles-en-Palermo-que-es-furor-hacen-filas-de-dos-cuadras-para-comerlos-716x437.jpg?format=webp&width=662&height=404"
-                    alt="Imagen de promoción de La Puntita"
-                />
-                <Typography variant="body1" className="texto-central">
-                    Hola mundo cruel, este es un mensaje para toda mi gente latino. Este proyecto no nos vencerá, arriba mi gente latino.
-                    <br />
-                    Los Waffles más Hot 🥵 La Puntita no se lame, se Muerde 🍌
-                </Typography>
+        <div className="slider-container">
+            <div
+                className="slider"
+                style={{ backgroundImage: `url(${images[currentIndex]})` }}
+            ></div>
+            <div className="dots-container">
+                {images.map((_, index) => (
+                    <span
+                        key={index}
+                        className={`dot ${currentIndex === index ? 'active' : ''}`}
+                        onClick={() => handleDotClick(index)}
+                    ></span>
+                ))}
             </div>
         </div>
     );
 }
+
