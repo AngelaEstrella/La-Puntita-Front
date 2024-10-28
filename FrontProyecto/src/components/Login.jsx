@@ -46,16 +46,24 @@ export default function Login() {
             },
             body: JSON.stringify({
                 email: correo,
-                password: contraseña
+                passw: contraseña
             })
         }).then(res => 
             res.json()
         ).then(data => {
-            console.log(data.usuarios)
-       
-            setOpenAlert(true);
+        // Asumiendo que la respuesta contiene una propiedad "success"
+        if (data.success) {  // Ajusta esta línea según la respuesta real del servidor
+            setError(false);
+        } else {
+            setError(true);
+        }
+        setOpenAlert(true);
 
         })
+        .catch(() => {
+            setError(true);
+            setOpenAlert(true);
+        });
     }
 
     const handleInputChange = (e, setter) => {

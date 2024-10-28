@@ -23,8 +23,8 @@ export default function Validate() {
     const [openAlert, setOpenAlert] = useState(false);
     const [error, setError] = useState(false);
 
-    const [email, setEmail] = useState(""); // Cambiar email a codigo
-    const [password, setPassword] = useState(""); // Cambiar password a dni
+    const [email, setCorreo] = useState(""); // Cambiar email a codigo
+    const [password, setContraseña] = useState(""); // Cambiar password a dni
 
     const handleCloseAlert = () => {
         setOpenAlert(false);
@@ -45,8 +45,8 @@ export default function Validate() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                email: email ? email : "No ingresado", // Cambiar email a codigo
-                password: password ? password : "No ingresado" // Cambiar password a dni
+                email: correo ? correo : "No ingresado", // Cambiar email a codigo
+                passw: contraseña ? contraseña : "No ingresado" // Cambiar password a dni
             })
         }).then(res =>{
             console.log(res.status)
@@ -54,8 +54,8 @@ export default function Validate() {
                 setError(false);
             } else {
                 setError(true);
-                setEmail("");
-                setPassword("");
+             setCorreo("");
+             setContraseña("");
             }
             setOpenAlert(true);
             res.json()
@@ -152,7 +152,7 @@ export default function Validate() {
                             autoComplete="codigo" // Cambiar autoComplete a codigo
                             autoFocus
                             value={codigo}
-                            onChange={(e) => handleInputChange(e, setEmailS)} // Cambiar setEmail a setCodigo
+                            onChange={(e) => handleInputChange(e, setCorreo)} // Cambiar setCorreo a setCodigo
                             inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} // Solo permite números
                             sx={{
                                 '& .MuiOutlinedInput-root': {
@@ -179,7 +179,7 @@ export default function Validate() {
                             id="dni" // Cambiar id a dni
                             autoComplete="current-dni" // Cambiar autoComplete a current-dni
                             value={dni}
-                            onChange={(e) => handleInputChange(e, setPassword)} // Cambiar setPassword a setDni
+                            onChange={(e) => handleInputChange(e, setContraseña)} // Cambiar setContraseña a setDni
                             inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} // Solo permite números
                             sx={{
                                 '& .MuiOutlinedInput-root': {
