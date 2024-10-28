@@ -15,7 +15,6 @@ import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const message = ['Usuario logueado correctamente', 'Error, Intente de nuevo'];
-import validate from '../../assets/validate.jpg';
 
 
 

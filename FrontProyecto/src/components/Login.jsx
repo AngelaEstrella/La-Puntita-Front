@@ -20,8 +20,6 @@ const message = ['Usuario logueado correctamente', 'Error, Intente de nuevo'];
 const url="https://proyecto-pds-24-ii-production.up.railway.app/usuarios";
 
 export default function Login() {
-    
-    const navigate = useNavigation();
 
     const [isMod, setIsMod] = useState(false);
     const [openAlert, setOpenAlert] = useState(false);
@@ -31,7 +29,6 @@ export default function Login() {
 
     const handleCloseAlert = () => {
         setOpenAlert(false);
-        navigate('/')
     }
 
     const handleCheckboxChange = (event) => {
