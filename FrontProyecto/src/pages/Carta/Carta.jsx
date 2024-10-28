@@ -86,6 +86,10 @@ export default function Carta() {
         }
     };
 
+    const handleRemoveFromCart = (id) => {
+        setCarrito((prev) => prev.filter((item) => item.id !== id));
+    };
+
     const calcularTotal = () => {
         return carrito.reduce((total, item) => {
             const toppingTotal = item.toppings.reduce((sum, topping) => sum + topping.precioUnitario, 0);
@@ -199,9 +203,9 @@ export default function Carta() {
                     </div>
                 )}
 
-<div className="floating-cart-button">
-    {carrito.length === 0 || <button className="add-to-cart" onClick={handleAddToCart}>Añadir al Carrito</button>}
-</div>
+                <div className="floating-cart-button">
+                    {carrito.length === 20 || <button className="add-to-cart" onClick={handleAddToCart}>Añadir al Carrito</button>}
+                </div>
             </div>
 
             {/* Carrito Sidebar */}
@@ -214,6 +218,7 @@ export default function Carta() {
                         {item.toppings.length > 0 && <p>Toppings: {item.toppings.map(t => t.nombreProducto).join(", ")}</p>}
                         {item.bebida && <p>Bebida: {item.bebida.nombreProducto}</p>}
                         <p>Subtotal: S/{(item.producto.precioUnitario + item.toppings.reduce((sum, topping) => sum + topping.precioUnitario, 0) + (item.bebida ? item.bebida.precioUnitario : 0)) * item.cantidad}</p>
+                        <button className="remove-item" onClick={() => handleRemoveFromCart(item.id)}>Eliminar</button>
                     </div>
                 ))}
                 <h3>Total: S/{calcularTotal()}</h3>

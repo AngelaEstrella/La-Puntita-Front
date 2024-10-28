@@ -4,18 +4,36 @@
     margin: 0 auto;
     padding: 20px;
     background-color: #ffe6f0;
-    border-radius: 10px;
+    border-radius: 15px;
     display: flex;
     gap: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
 }
 
-/* Títulos y encabezados */
-.productos-lista h2 {
+/* Título principal */
+.carta-container h1 {
     color: #f58ab8;
-    margin-top: 20px;
+    font-size: 2.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Listas de waffles, toppings y bebidas */
+/* Subtítulos de categorías */
+.productos-lista h2 {
+    color: #d94784;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 30px;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Listas de productos */
 .waffles-lista, .toppings-lista, .bebidas-lista {
     display: flex;
     flex-wrap: wrap;
@@ -26,69 +44,87 @@
 
 /* Estilo de cada tarjeta de producto */
 .producto-tarjeta {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border: 1px solid #e5a6c4;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     width: 250px;
-    padding: 20px;
+    padding: 15px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    text-align: center;
+    font-weight: 500;
+}
+
+.producto-tarjeta:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .producto-tarjeta.selected {
     border-color: #f58ab8;
-    box-shadow: 0 6px 12px rgba(255, 2, 179, 0.164);
-    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(255, 2, 179, 0.2);
+    transform: scale(1.05);
 }
 
 /* Nombre y precio de cada producto */
 .producto-nombre {
-    font-size: 1.2rem;
-    color: #333;
+    font-size: 1.4rem;
+    color: #d94784;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .producto-precio {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: #f58ab8;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* Botón de añadir al carrito */
 .add-to-cart {
-    padding: 10px 20px;
+    padding: 12px 24px;
     background-color: #f58ab8;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .add-to-cart:hover {
     background-color: #e04892;
+    transform: scale(1.05);
 }
 
 /* Carrito en el lado derecho de la pantalla */
 .carrito {
-    width: 300px;
+    width: 350px;
     background-color: #fff;
-    border-left: 1px solid #ddd;
+    border-left: 3px solid #f58ab8;
     padding: 20px;
-    box-shadow: -3px 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: -3px 0 15px rgba(0, 0, 0, 0.1);
     position: fixed;
     right: 0;
     top: 0;
     height: 100vh;
     overflow-y: auto;
-    padding-bottom: 100px; /* Espacio extra para evitar que el botón tape el contenido */
+    padding-bottom: 100px; /* Espacio para evitar que el botón tape el contenido */
     z-index: 999;
 }
 
+/* Título del carrito */
 .carrito h2 {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     color: #f58ab8;
     margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilo de cada item en el carrito */
@@ -99,92 +135,82 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
+    font-size: 1.1rem;
+    color: #333;
 }
 
-/* Controles de cantidad en el carrito */
+/* Botones y controles del carrito */
 .cantidad-controls {
     display: flex;
     gap: 10px;
     margin-top: 5px;
 }
 
-.cantidad-controls button {
+.cantidad-controls button, .remove-item {
     background-color: #f58ab8;
     color: #fff;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
 }
 
-.cantidad-controls button:hover {
+.cantidad-controls button:hover, .remove-item:hover {
     background-color: #e04892;
 }
 
-.remove-item {
-    background-color: #ff4d4d;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    margin-top: 5px;
-}
-
-.remove-item:hover {
-    background-color: #e04343;
-}
-
+/* Botón de checkout */
 .checkout-button {
     background-color: #4caf50;
     color: white;
-    padding: 10px;
+    padding: 12px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
     width: 100%;
     margin-top: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .checkout-button:hover {
     background-color: #45a049;
+    transform: scale(1.05);
 }
 
 /* Extras Container: Sticky Position */
 .extras-container {
     position: sticky;
-    top: 0; /* Keeps it at the top when scrolling */
+    top: 0;
     background-color: #fdf7fa;
     padding: 20px;
     border: 1px solid #f58ab8;
-    border-radius: 10px;
+    border-radius: 15px;
     margin-top: 20px;
-    z-index: 10; /* Ensures it appears above other elements */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Styling for extra options */
 .extras-container h2 {
     color: #f58ab8;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: bold;
     margin-bottom: 10px;
+    text-align: center;
 }
 
-.extras-options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
+/* Opciones de extra */
 .extra-option {
     display: flex;
     align-items: center;
     padding: 10px;
     background-color: #ffffff;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
@@ -209,10 +235,29 @@
     padding: 15px 30px;
     font-size: 1.2rem;
     border-radius: 8px;
+    background-color: #f58ab8;
+    color: white;
+    font-weight: bold;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .floating-cart-button .add-to-cart:hover {
     background-color: #e04892;
+    transform: scale(1.05);
+}
+
+.remove-item {
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.remove-item:hover {
+    background-color: #e04343;
 }
