@@ -56,7 +56,6 @@
 
 /* Botón de añadir al carrito */
 .add-to-cart {
-    margin-top: 20px;
     padding: 10px 20px;
     background-color: #f58ab8;
     color: white;
@@ -82,6 +81,8 @@
     top: 0;
     height: 100vh;
     overflow-y: auto;
+    padding-bottom: 100px; /* Espacio extra para evitar que el botón tape el contenido */
+    z-index: 999;
 }
 
 .carrito h2 {
@@ -120,24 +121,6 @@
     background-color: #e04892;
 }
 
-/* Total del carrito */
-.carrito-total {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-    margin-top: 20px;
-    text-align: left;
-}
-
-.carrito-item {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-}
-
 .remove-item {
     background-color: #ff4d4d;
     color: #fff;
@@ -169,14 +152,19 @@
     background-color: #45a049;
 }
 
+/* Extras Container: Sticky Position */
 .extras-container {
+    position: sticky;
+    top: 0; /* Keeps it at the top when scrolling */
     background-color: #fdf7fa;
     padding: 20px;
     border: 1px solid #f58ab8;
     border-radius: 10px;
     margin-top: 20px;
+    z-index: 10; /* Ensures it appears above other elements */
 }
 
+/* Styling for extra options */
 .extras-container h2 {
     color: #f58ab8;
     font-size: 1.5rem;
@@ -207,4 +195,24 @@
 
 .extra-option input {
     margin-right: 10px;
+}
+
+/* Floating Add to Cart Button */
+.floating-cart-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.floating-cart-button .add-to-cart {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.floating-cart-button .add-to-cart:hover {
+    background-color: #e04892;
 }
