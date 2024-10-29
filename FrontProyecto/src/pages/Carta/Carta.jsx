@@ -4,9 +4,29 @@ import DetallesProducto from "./DetallesProducto";
 
 const url = "https://proyecto-pds-24-ii-production.up.railway.app/productos";
 
-const puntitas = ["Latino", "Suggar daddy", "Europeo", "Africano", "Dinamita"];
-const cuquitas = ["Cocolover", "Europea", "Pichanguera", "Power", "Malcriada"];
-const maxipizzas = ["Moreno", "Gringo", "Vergano", "Juguetón", "Carnoso"];
+const categorias = {
+    Puntitas: ["Latino", "Suggar daddy", "Europeo", "Africano","Dinamita"],
+    Cuquitas: ["Cocolover", "Europea", "Pichanguera", "Power", "Malcriada"],
+    Maxipizzas: ["Moreno", "Gringo", "Vergano", "Juguetón", "Carnoso"]
+};
+
+const urlsImagenes = {
+    "Latino": "https://i.ibb.co/DzFDp4L/ElLatino.png",
+    "Suggar daddy": "https://i.ibb.co/crWVJCV/Suggar-Daddy.png",
+    "Europeo": "https://i.ibb.co/hBfsrL7/El-Europeo.png",
+    "Africano": "https://i.ibb.co/6w5LxGb/El-Africano.png",
+    "Dinamita": "https://i.ibb.co/02tjjs4/La-Dinamita.png",
+    "Cocolover": "https://i.ibb.co/t8BqjTS/Coco-Lover.png",
+    "Europea": "https://i.ibb.co/9bdb6yK/Europea.png",
+    "Pichanguera": "https://i.ibb.co/0yfZRnZ/Pichangera.png",
+    "Power": "https://i.ibb.co/VYYkYvk/Power.png",
+    "Malcriada": "https://i.ibb.co/jzDF80x/Malcriada.png",
+    "Moreno": "https://i.ibb.co/hY7WDqX/Moreno.png",
+    "Gringo": "https://i.ibb.co/19g2pmJ/Gringo.png",
+    "Vergano": "https://i.ibb.co/qrqw4rC/Vergano.png",
+    "Juguetón": "https://i.ibb.co/kHYSW1B/Jugueton.png",
+    "Carnoso": "https://i.ibb.co/wykQF1T/Carnoso.png"
+};
 
 export default function Carta() {
     const [productos, setProductos] = useState([]);
@@ -32,10 +52,7 @@ export default function Carta() {
     // Filtrar productos según la categoría seleccionada
     const filteredProducts = mainProducts.filter((product) => {
         if (selectedCategory === "Todos") return true;
-        if (selectedCategory === "Puntitas") return puntitas.includes(product.nombreProducto);
-        if (selectedCategory === "Cuquitas") return cuquitas.includes(product.nombreProducto);
-        if (selectedCategory === "Maxipizzas") return maxipizzas.includes(product.nombreProducto);
-        return false;
+        return categorias[selectedCategory]?.includes(product.nombreProducto);
     });
 
     return (
@@ -59,7 +76,7 @@ export default function Carta() {
                 <div className="producto-lista">
                     {filteredProducts.map((product) => (
                         <div key={product.idProducto} className="producto-tarjeta">
-                            <img src={`/ImagenCarta/${product.nombreProducto.replace(" ", "")}.png`} alt={product.nombreProducto} className="producto-imagen" />
+                            <img src={urlsImagenes[product.nombreProducto]} alt={product.nombreProducto} className="producto-imagen" />
                             <div className="producto-info">
                                 <h3 className="producto-nombre">{product.nombreProducto}</h3>
                                 <p className="producto-descripcion">{product.descripcion}</p>
