@@ -158,7 +158,7 @@ export default function Login() {
                         </Button>
                         <Grid container>
                             <Grid item>
-                                <Link to="/validate">
+                                <Link to="/Register">
                                     {"No tienes una cuenta? Regístrate"}
                                 </Link>
                             </Grid>
@@ -169,6 +169,7 @@ export default function Login() {
         </Grid>
     );
 }
+
 //LOGIN SIN ACCESO A LA BD, SIMPLEMENTO PUSO UN CORREO Y CONTRA DE MANERA DIRECTA PORQUE SIEMPRE ME APARECE ERRORES CON EL ACCESO
 /*
 import Button from '@mui/material/Button';
