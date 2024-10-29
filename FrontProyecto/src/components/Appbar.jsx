@@ -145,19 +145,18 @@ function ResponsiveAppBar() {
             */}
             
             <Button
-              variant="contained"
-              startIcon={<UbiIcon />}
-              color="secondary"
-              classname="deliveryButton"
+                  variant="contained"
+                  startIcon={<UbiIcon />}
+                  sx={{ backgroundColor: '#62C3D9', '&:hover': { backgroundColor: '#62C3D9' } }}
             >
               ¿Cómo deseas recibir tu pedido?
             </Button>
             
             
             <Button
-              variant="contained"
-              color="secondary"
-              onClick={() => navigate("/login")} // Navega al componente Login
+                  variant="contained"
+                  sx={{ backgroundColor: '#62C3D9', '&:hover': { backgroundColor: '#62C3D9' } }} // Cambia a tu color deseado
+                  onClick={() => navigate("/login")} // Navega al componente Login
             >
               Iniciar Sesión
             </Button>
