@@ -13,7 +13,7 @@ const categorias = {
 const urlsImagenes = {
     "Latino": "https://i.ibb.co/DzFDp4L/ElLatino.png",
     "Suggar daddy": "https://i.ibb.co/crWVJCV/Suggar-Daddy.png",
-    "Europeo": "https://i.ibb.co/hBfsrL7/El-Europeo.png",
+    "Europeo": "https://i.ibb.co/qNgVkhG/Europeoo.png",
     "Africano": "https://i.ibb.co/6w5LxGb/El-Africano.png",
     "Dinamita": "https://i.ibb.co/02tjjs4/La-Dinamita.png",
     "Cocolover": "https://i.ibb.co/t8BqjTS/Coco-Lover.png",
