@@ -54,7 +54,17 @@ function ResponsiveAppBar() {
     <AppBar position="fixed" sx={{ bgcolor: "#f58ab8" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <Box
+            component="a"
+            href="/"
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+              mr: 1,
+            }}
+            >
+            {/* Ruta de la imagen */}
+            <img src="https://i.ibb.co/HF3Hmdg/logo-puntita.png" alt="Logo" style={{ height: '40px', width: 'auto' }} />
+          </Box>
           <Typography
             variant="h6"
             noWrap
