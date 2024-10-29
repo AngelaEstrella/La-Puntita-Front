@@ -830,7 +830,7 @@ export default function Login() {
                         </Button>
                         <Grid container>
                             <Grid item>
-                                <Link to="/validate">
+                                <Link to="/register">
                                     {"No tienes una cuenta? Regístrate"}
                                 </Link>
                             </Grid>
