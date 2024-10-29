@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Carta from './pages/Carta/Carta';
 import Contacto from './pages/Contacto/Contacto';
 import Validate from './components/validate';
+import Register from './components/Register';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
       <div className="App">
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           {/*<Route path="/validate" element={<Validate />} />*/}
           <Route
             path="/*"
