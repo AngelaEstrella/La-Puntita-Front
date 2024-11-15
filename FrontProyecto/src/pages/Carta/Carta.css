@@ -38,9 +38,9 @@
 }
 
 .categoria-boton.active {
-    background-color: #2d6a4f;
+    background-color: #9e4099;
     color: #fff;
-    border-color: #2d6a4f;
+    border-color: #9e4099;
 }
 
 /* Estilos para cada tarjeta de producto */
