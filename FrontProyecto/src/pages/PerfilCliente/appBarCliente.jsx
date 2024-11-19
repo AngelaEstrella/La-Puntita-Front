@@ -14,9 +14,14 @@ import {
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import BarChartIcon from "@mui/icons-material/BarChart";
+import SecurityIcon from "@mui/icons-material/Security"; // Nuevo icono para Seguridad
 import { useLocation, useNavigate } from "react-router-dom"; // Importar useNavigate
 import { useContext } from "react"; // Importar el contexto
 import { AuthContext } from "../../services/AuthContext"; // Importar AuthContext
+import MiCuenta from "./MiCuenta";
+import Seguridad from "./Seguridad";
+import HistorialCompras from "./HistorialCompras";
+import SeguimientoPedido from "./SeguimientoPedido"
 
 const NAVIGATION = [
   {
@@ -32,6 +37,11 @@ const NAVIGATION = [
     segment: "/perfil/historial-compras", // Rutas corregidas con el prefijo '/perfil'
     title: "Historial de Compras",
     icon: <ShoppingCartIcon />,
+  },
+  {
+    segment: "/perfil/seguridad", // Nueva ruta de Seguridad
+    title: "Seguridad",
+    icon: <SecurityIcon />, // Usar el icono de Seguridad
   },
   {
     kind: "divider",
@@ -56,11 +66,16 @@ const AppBarCliente = () => {
   const renderContent = () => {
     switch (location.pathname) {
       case "/perfil/mi-cuenta":
-        return <Typography variant="h5">Esta es la página de Mi Cuenta</Typography>;
+        return <MiCuenta />;
       case "/perfil/historial-compras":
-        return <Typography variant="h5">Historial de Compras</Typography>;
+        return <HistorialCompras />;
+        
       case "/perfil/seguimiento-pedidos":
-        return <Typography variant="h5">Seguimiento de Pedidos</Typography>;
+        return <SeguimientoPedido/>;
+        
+      case "/perfil/seguridad": // Nueva sección de Seguridad
+      return <Seguridad/>;
+        
       default:
         return <Typography variant="h5">Bienvenido a Mi Cuenta</Typography>;
     }
@@ -161,4 +176,6 @@ const AppBarCliente = () => {
 };
 
 export default AppBarCliente;
+
+
 

@@ -49,10 +49,10 @@ export default function App() {
                 <>
                 <AppBarCliente/>
                   <Routes>
-                    <Route path="mi-cuenta" element={<MiCuenta />} />
-                    <Route path="seguridad" element={<Seguridad />} />
-                    <Route path="historial-compras" element={<HistorialCompras />} />
-                    <Route path="seguimiento-pedidos" element={<SeguimientoPedido />} />
+                    <Route path="/perfil/mi-cuenta" element={<MiCuenta />} />
+                    <Route path="/perfil/seguridad" element={<Seguridad />} />
+                    <Route path="/perfil/historial-compras" element={<HistorialCompras />} />
+                    <Route path="/perfil/seguimiento-pedidos" element={<SeguimientoPedido />} />
                   </Routes>
                 
                 </>
