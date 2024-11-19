@@ -76,7 +76,11 @@ export default function Login() {
                 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}
             >
                 <DialogTitle id="alert-dialog-title">
-                    {error ? message[1] : `${message[0]}, ID de usuario: ${userId}`}
+                {error 
+                    ? message[1] 
+                    : userId === 5 
+                        ? "Bienvenido, Administrador. ID: 5" 
+                        : `Bienvenido, Usuario. ID: ${userId}`}
                 </DialogTitle>
                 <DialogActions>
                     <Button onClick={handleCloseAlert} color="primary" autoFocus>
