@@ -21,7 +21,7 @@
 
 /* Contenido del carrito */
 .carrito-content {
-  background-color: #fff;
+  background-color: #f9f9f9;
   width: 100%;
   max-width: 1200px;
   border-radius: 15px;
@@ -40,11 +40,11 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-bottom: 20px;
-  transition: transform 0.3s ease;
+  transition: transform 0s ease;
 }
 
 .carrito-product-card:hover {
-  transform: scale(1.02); /* Efecto hover */
+  transform: scale(1.01); /* Efecto hover */
 }
 
 /* Imagen del producto */
@@ -83,7 +83,6 @@
 
 .personalization h4 {
   font-size: 1rem;
-  color: #9e4099;
   margin-bottom: 5px;
 }
 
@@ -96,9 +95,8 @@
 /* Acciones del producto */
 .product-actions {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 5px;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 10px;
 }
 
@@ -138,12 +136,13 @@
   padding: 20px 50px;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
   z-index: 100;
+  padding: 20px 300px 20px 300px;
 }
 
-.subtotal {
+.carrito-total, .subtotal {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #9e4099;
+  color: #9e4099; /* Color principal */
 }
 
 /* Botones del footer */
