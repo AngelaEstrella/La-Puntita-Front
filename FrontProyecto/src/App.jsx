@@ -30,6 +30,8 @@ export default function App() {
                     {/* Rutas para Delivery y Recojo en tienda */}
                     <Route path="/delivery" element={<h1>Delivery</h1>} />
                     <Route path="/pickup" element={<h1>Login</h1>} />
+                    <Route path="/carrito" element={<Carrito />} /> {/* Nueva ruta */}
+
                   </Routes>
                 </>
               }
