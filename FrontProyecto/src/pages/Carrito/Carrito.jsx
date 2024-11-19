@@ -3,10 +3,62 @@ import { useCart } from "../../components/CartContext";
 import { useNavigate } from "react-router-dom";
 import "./Carrito.css";
 
+//AÑADIDOS IMPORT:
+import { AuthContext } from "../../services/AuthContext"; // Importar el AuthContext
+import { useContext } from "react"; // Hook para usar el contexto
+
 const Carrito = () => {
   const { cartItems, total, removeFromCart, clearCart } = useCart();
   const navigate = useNavigate(); // Para redirigir a la carta
+  //AÑADIDOS CONST:
+  const { userId, isAuthenticated } = useContext(AuthContext); // Obtener el estado del contexto  
 
+  //AÑADIDOS PARA PAGO:
+  const handleCheckout = async () => {
+    if (!isAuthenticated) {
+      alert("Por favor, inicia sesión para continuar con el pago.");
+      navigate("/login"); // Redirigir al login si no está autenticado
+      return;
+    }
+
+    // Preparar el JSON que se enviará al backend
+    const paymentData = {
+      userId: userId, // Obtener dinámicamente el userId del contexto
+      products: cartItems.map((product) => ({
+        productId: product.idProducto,
+        quantity: product.quantity,
+      })),
+      totalAmount: total * 100, // Total en centavos
+      delivery: false, // Cambiar si existe opción de delivery
+    };
+
+    console.log("Datos enviados al backend:", paymentData);
+
+    try {
+      // Llamada al backend para crear el payment intent
+      const response = await fetch("http://localhost:3001/api/create-payment-intent", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(paymentData),
+      });
+
+      const data = await response.json();
+      if (data.clientSecret) {
+        console.log("ClientSecret recibido:", data.clientSecret);
+        navigate("/checkout", { state: { clientSecret: data.clientSecret } });
+      } else {
+        console.error("Error en el backend:", data.error);
+        alert("Error al iniciar el pago. Intenta nuevamente.");
+      }
+    } catch (error) {
+      console.error("Error al conectar con el backend:", error);
+      alert("Hubo un problema al procesar el pago. Intenta nuevamente.");
+    }
+  };
+
+  //RESTO DEL CODIGO SIN CAMBIOS
   return (
     <div className="carrito-container">
       <div className="carrito-content">
