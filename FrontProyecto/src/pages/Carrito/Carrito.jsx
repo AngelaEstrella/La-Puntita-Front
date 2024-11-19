@@ -67,10 +67,17 @@ const Carrito = () => {
               </div>
             ))}
             <div className="carrito-total">
-              <h2>Total: S/ {total.toFixed(2)}</h2>
-              <button className="clear-cart-button" onClick={clearCart}>
-                Vaciar Carrito
-              </button>
+              <div className="subtotal">
+                <h2>SubTotal: S/ {total.toFixed(2)}</h2>
+              </div>
+              <div className="footer-buttons">
+                <button className="clear-cart-button" onClick={clearCart}>
+                  Vaciar Carrito
+                </button>
+                <button className="pay-button" navigate="/checkout">
+                  Ir a Pagar
+                </button>
+              </div>
             </div>
           </>
         ) : (
