@@ -20,14 +20,16 @@ import { useCart } from './CartContext';
 
 
 
-const pages = ['Inicio', 'Carta', 'Promociones', 'Contacto'];
+const pages = ['Inicio', 'Carta', 'Contacto'];
 //const settings = ['Profile', 'Account', 'Dashboard', 'Logout']; // Accede al estado global
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   //const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  const { isAuthenticated, logout } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { countProducts } = useCart();
 
   const handleNavigate = (page) => {
     const routes = {
