@@ -16,6 +16,8 @@ import UbiIcon from '@mui/icons-material/LocationOn';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../services/AuthContext';
+import { useCart } from './CartContext';
+
 
 
 const pages = ['Inicio', 'Carta', 'Promociones', 'Contacto'];
@@ -26,18 +28,11 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   //const [isAuthenticated, setIsAuthenticated] = React.useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
-  const { isAuthenticated,logout } = useContext(AuthContext);
-
-  const isAdmin = location.state?.isAdmin || false;
-
-  if (isAdmin) return null;
 
   const handleNavigate = (page) => {
     const routes = {
       'Inicio': '/',
       'Carta': '/carta',
-      'Promociones': '/promociones',
       'Contacto': '/contacto',
     };
     navigate(routes[page]);
@@ -239,6 +234,57 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>*/}
+
+        {/*Carrito de Compras2*/}
+          <div
+            className="container-cart-icon"
+            onClick={() => navigate("/carrito")} // Redirigir a la página del carrito
+            style={{
+              cursor: "pointer",
+              position: "relative",
+            }}
+          >
+            {/* Ícono del carrito */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="icon-cart"
+              style={{
+                width: "24px",
+                height: "24px",
+              }}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+              />
+            </svg>
+            {/* Contador de productos */}
+            <div
+              className="count-products"
+              style={{
+                position: "absolute",
+                top: "-5px",
+                right: "-10px",
+                backgroundColor: "red",
+                color: "white",
+                borderRadius: "50%",
+                width: "20px",
+                height: "20px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: "12px",
+              }}
+            >
+              <span>{countProducts}</span>
+            </div>
+
+          </div>
         </Toolbar>
       </Container>
     </AppBar>
