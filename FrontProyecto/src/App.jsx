@@ -4,7 +4,6 @@ import Inicio from './pages/Home/Home';
 import Login from './components/Login';
 import Carta from './pages/Carta/Carta';
 import Contacto from './pages/Contacto/Contacto';
-import Validate from './components/validate';
 import Register from './components/Register';
 import Carrito from './pages/Carrito/Carrito';
 

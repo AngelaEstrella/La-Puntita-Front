@@ -18,7 +18,7 @@ import { useCart } from './CartContext';
 
 
 
-const pages = ['Inicio', 'Carta', 'Promociones', 'Contacto'];
+const pages = ['Inicio', 'Carta', 'Contacto'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -32,7 +32,6 @@ function ResponsiveAppBar() {
     const routes = {
       'Inicio': '/',
       'Carta': '/carta',
-      'Promociones': '/promociones',
       'Contacto': '/contacto',
     };
     navigate(routes[page]);
