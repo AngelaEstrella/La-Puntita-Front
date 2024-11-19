@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ResponsiveAppBar from './components/Appbar';
+import AppBarCliente from './pages/PerfilCliente/appBarCliente';
 import Inicio from './pages/Home/Home';
 import Login from './components/Login';
 import Carta from './pages/Carta/Carta';
@@ -7,6 +8,10 @@ import Contacto from './pages/Contacto/Contacto';
 import Register from './components/Register';
 import { AuthProvider } from './services/AuthContext';
 import Carrito from './pages/Carrito/Carrito';
+import MiCuenta from './pages/PerfilCliente/MiCuenta';
+import Seguridad from './pages/PerfilCliente/Seguridad';
+import HistorialCompras from './pages/PerfilCliente/HistorialCompras';
+import SeguimientoPedido from './pages/PerfilCliente/SeguimientoPedido';
 
 export default function App() {
   return (
@@ -31,8 +36,25 @@ export default function App() {
                     <Route path="/delivery" element={<h1>Delivery</h1>} />
                     <Route path="/pickup" element={<h1>Login</h1>} />
                     <Route path="/carrito" element={<Carrito />} /> {/* Nueva ruta */}
-
+                  
                   </Routes>
+                </>
+              }
+            />
+
+            {/* Rutas para Perfil del Cliente */}
+            <Route
+              path="/perfil/*"
+              element={
+                <>
+                <AppBarCliente/>
+                  <Routes>
+                    <Route path="mi-cuenta" element={<MiCuenta />} />
+                    <Route path="seguridad" element={<Seguridad />} />
+                    <Route path="historial-compras" element={<HistorialCompras />} />
+                    <Route path="seguimiento-pedidos" element={<SeguimientoPedido />} />
+                  </Routes>
+                
                 </>
               }
             />

@@ -67,6 +67,11 @@ function ResponsiveAppBar() {
     navigate('/'); // Redirigir al inicio
   };
 
+  const handleNavigateUserMenu = (path) => {
+    navigate(path); // Navega a la ruta proporcionada
+    handleCloseUserMenu(); // Cierra el menú
+  };
+
   return (
     <AppBar position="fixed" sx={{ bgcolor: "#f58ab8" }}>
       <Container maxWidth="xl">
@@ -194,10 +199,10 @@ function ResponsiveAppBar() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  <MenuItem onClick={() => navigate('/mi-cuenta')}>Mi cuenta</MenuItem>
-                  <MenuItem onClick={() => navigate('/seguridad')}>Seguridad</MenuItem>
-                  <MenuItem onClick={() => navigate('/historial')}>Historial de compras</MenuItem>
-                  <MenuItem onClick={() => navigate('/seguimiento')}>Seguimiento del pedido</MenuItem>
+                  <MenuItem onClick={() =>  handleNavigateUserMenu('/perfil/mi-cuenta')}>Mi cuenta</MenuItem>
+                  <MenuItem onClick={() => handleNavigateUserMenu('/perfil/seguridad')}>Seguridad</MenuItem>
+                  <MenuItem onClick={() => handleNavigateUserMenu('/perfil/historial-compras')}>Historial de compras</MenuItem>
+                  <MenuItem onClick={() =>  handleNavigateUserMenu('/perfil/seguimiento-pedidos')}>Seguimiento del pedido</MenuItem>
                   <MenuItem onClick={handleLogout}>Salir</MenuItem>
                 </Menu>
               </Box>

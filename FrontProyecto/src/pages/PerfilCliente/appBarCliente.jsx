@@ -1,14 +1,22 @@
 import React from "react";
-import { extendTheme, styled } from "@mui/material/styles";
+import {
+  Box,
+  Typography,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+  Button,
+  AppBar,
+  Toolbar,
+} from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import BarChartIcon from "@mui/icons-material/BarChart";
-import DescriptionIcon from "@mui/icons-material/Description";
-import LayersIcon from "@mui/icons-material/Layers";
-import { AppProvider } from "@toolpad/core/AppProvider";
-import { DashboardLayout } from "@toolpad/core/DashboardLayout";
-import { PageContainer } from "@toolpad/core/PageContainer";
-import Grid from "@mui/material/Grid2";
+import { useLocation, useNavigate } from "react-router-dom"; // Importar useNavigate
+import { useContext } from "react"; // Importar el contexto
+import { AuthContext } from "../../services/AuthContext"; // Importar AuthContext
 
 const NAVIGATION = [
   {
@@ -16,12 +24,12 @@ const NAVIGATION = [
     title: "Configuración de Cuenta",
   },
   {
-    segment: "perfil",
+    segment: "/perfil/mi-cuenta", // Rutas corregidas con el prefijo '/perfil'
     title: "Mi Perfil",
     icon: <DashboardIcon />,
   },
   {
-    segment: "historial-compras",
+    segment: "/perfil/historial-compras", // Rutas corregidas con el prefijo '/perfil'
     title: "Historial de Compras",
     icon: <ShoppingCartIcon />,
   },
@@ -33,81 +41,124 @@ const NAVIGATION = [
     title: "Otras Opciones",
   },
   {
-    segment: "seguimiento-pedidos",
+    segment: "/perfil/seguimiento-pedidos", // Rutas corregidas con el prefijo '/perfil'
     title: "Seguimiento de Pedidos",
     icon: <BarChartIcon />,
   },
-  {
-    segment: "integraciones",
-    title: "Integraciones",
-    icon: <LayersIcon />,
-  },
 ];
 
-const demoTheme = extendTheme({
-  colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: "class",
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
-    },
-  },
-});
+const AppBarCliente = () => {
+  const location = useLocation(); // Obtener la ubicación actual
+  const navigate = useNavigate(); // Usar navegación de react-router-dom
+  const { logout } = useContext(AuthContext); // Obtener logout del contexto de autenticación
 
-function useDemoRouter(initialPath) {
-  const [pathname, setPathname] = React.useState(initialPath);
+  // Función para renderizar el contenido según la ubicación
+  const renderContent = () => {
+    switch (location.pathname) {
+      case "/perfil/mi-cuenta":
+        return <Typography variant="h5">Esta es la página de Mi Cuenta</Typography>;
+      case "/perfil/historial-compras":
+        return <Typography variant="h5">Historial de Compras</Typography>;
+      case "/perfil/seguimiento-pedidos":
+        return <Typography variant="h5">Seguimiento de Pedidos</Typography>;
+      default:
+        return <Typography variant="h5">Bienvenido a Mi Cuenta</Typography>;
+    }
+  };
 
-  const router = React.useMemo(() => ({
-    pathname,
-    searchParams: new URLSearchParams(),
-    navigate: (path) => setPathname(String(path)),
-  }), [pathname]);
+  // Función para manejar el cierre de sesión
+  const handleLogout = () => {
+    logout(); // Cerrar la sesión
+    navigate("/"); // Navegar a la página principal
+  };
 
-  return router;
-}
-
-const Skeleton = styled("div")(({ theme, height }) => ({
-  backgroundColor: theme.palette.action.hover,
-  borderRadius: theme.shape.borderRadius,
-  height,
-  content: '" "',
-}));
-
-const AppBarCliente = (props) => {
-  const { window } = props;
-  const router = useDemoRouter("/perfil");
-
-  const demoWindow = window ? window() : undefined;
+  // Función para regresar al menú principal
+  const handleBack = () => {
+    navigate("/"); // Ir al menú principal
+  };
 
   return (
-    <AppProvider
-      navigation={NAVIGATION}
-      router={router}
-      theme={demoTheme}
-      window={demoWindow}
-    >
-      <DashboardLayout>
-        <PageContainer>
-          <Grid container spacing={2}>
-            <Grid xs={12}>
-              <h2>Bienvenido a Mi Cuenta</h2>
-              <p>Selecciona una opción en el menú de navegación para empezar.</p>
-            </Grid>
-            <Grid xs={4}>
-              <Skeleton height={150} />
-            </Grid>
-            <Grid xs={8}>
-              <Skeleton height={150} />
-            </Grid>
-          </Grid>
-        </PageContainer>
-      </DashboardLayout>
-    </AppProvider>
+    <Box sx={{ display: "flex", height: "100vh", flexDirection: "column" }}>
+      {/* AppBar superior */}
+      <AppBar position="static" sx={{ backgroundColor: "#f58ab8" }}>
+        <Toolbar>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            Perfil de Usuario
+          </Typography>
+
+          {/* Botón Regresar */}
+          <Button color="inherit" onClick={handleBack}>
+            Regresar
+          </Button>
+
+          {/* Botón Cerrar Sesión */}
+          <Button color="inherit" onClick={handleLogout}>
+            Cerrar Sesión
+          </Button>
+        </Toolbar>
+      </AppBar>
+
+      {/* Contenido del layout */}
+      <Box sx={{ display: "flex", height: "100%" }}>
+        {/* Navegación lateral */}
+        <Box
+          sx={{
+            width: "240px",
+            backgroundColor: "#f4f4f4",
+            padding: "16px",
+            borderRight: "1px solid #ddd",
+          }}
+        >
+          <Typography variant="h6" gutterBottom>
+            Navegación
+          </Typography>
+          <List>
+            {NAVIGATION.map((item, index) => {
+              if (item.kind === "divider") {
+                return <Divider key={index} sx={{ marginY: 1 }} />;
+              }
+
+              if (item.kind === "header") {
+                return (
+                  <Typography
+                    key={index}
+                    variant="subtitle2"
+                    color="textSecondary"
+                    sx={{ marginY: 1 }}
+                  >
+                    {item.title}
+                  </Typography>
+                );
+              }
+
+              return (
+                <ListItem
+                  button
+                  key={index}
+                  onClick={() => navigate(item.segment)} // Usar navigate en lugar de window.location.href
+                >
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.title} />
+                </ListItem>
+              );
+            })}
+          </List>
+        </Box>
+
+        {/* Contenido principal */}
+        <Box
+          sx={{
+            flexGrow: 1,
+            padding: "24px",
+            backgroundColor: "#fff",
+          }}
+        >
+          {renderContent()}
+        </Box>
+      </Box>
+    </Box>
   );
 };
-/*Jelou, codigo completo*/ 
+
 export default AppBarCliente;
+
