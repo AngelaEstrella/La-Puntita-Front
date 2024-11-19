@@ -12,17 +12,26 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { useNavigate } from 'react-router-dom';
 import UbiIcon from '@mui/icons-material/LocationOn';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../services/AuthContext';
 
 
 const pages = ['Inicio', 'Carta', 'Promociones', 'Contacto'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+//const settings = ['Profile', 'Account', 'Dashboard', 'Logout']; // Accede al estado global
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  //const [isAuthenticated, setIsAuthenticated] = React.useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { isAuthenticated,logout } = useContext(AuthContext);
+
+  const isAdmin = location.state?.isAdmin || false;
+
+  if (isAdmin) return null;
 
   const handleNavigate = (page) => {
     const routes = {
@@ -48,6 +57,17 @@ function ResponsiveAppBar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleLogin = () => {
+    setIsAuthenticated(true); // Simular inicio de sesión
+    navigate('/'); // Redirigir al inicio
+  };
+
+  const handleLogout = () => {
+    logout(); // Cerrar sesión
+    handleCloseUserMenu(); // Cierra el menú de usuario
+    navigate('/'); // Redirigir al inicio
   };
 
   return (
@@ -153,13 +173,46 @@ function ResponsiveAppBar() {
             </Button>
             
             
-            <Button
+            {/* Mostrar el botón de sesión dinámica */}
+            {isAuthenticated ? (
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Abrir menú">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="Usuario" />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-user"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <MenuItem onClick={() => navigate('/mi-cuenta')}>Mi cuenta</MenuItem>
+                  <MenuItem onClick={() => navigate('/seguridad')}>Seguridad</MenuItem>
+                  <MenuItem onClick={() => navigate('/historial')}>Historial de compras</MenuItem>
+                  <MenuItem onClick={() => navigate('/seguimiento')}>Seguimiento del pedido</MenuItem>
+                  <MenuItem onClick={handleLogout}>Salir</MenuItem>
+                </Menu>
+              </Box>
+            ) : (
+              <Button
                   variant="contained"
                   sx={{ backgroundColor: '#62C3D9', '&:hover': { backgroundColor: '#62C3D9' } }} // Cambia a tu color deseado
                   onClick={() => navigate("/login")} // Navega al componente Login
             >
               Iniciar Sesión
             </Button>
+            )}
           </Box>
 
           {/* Menú de usuario 

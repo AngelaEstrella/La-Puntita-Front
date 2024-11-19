@@ -4,14 +4,15 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { Link } from "react-router-dom";
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from '../services/AuthContext';
 
 const message = ['Usuario logueado correctamente', 'Error, Intente de nuevo'];
 const url = "https://proyecto-pds-24-ii-production.up.railway.app/token";
@@ -21,11 +22,21 @@ export default function Login() {
     const [correo, setCorreo] = useState(""); 
     const [contraseña, setContraseña] = useState(""); 
     const [error, setError] = useState(false);
-    const [userId, setUserId] = useState(null); 
+    const navigate = useNavigate();
+    const { setIsAuthenticated, userId, setUserId } = useContext(AuthContext);
 
     const handleCloseAlert = () => {
         setOpenAlert(false);
-    }
+        if (!error) {
+            if (userId === 5) {
+                navigate('/admin', { state: { isAuthenticated: true, isAdmin: true } });
+            } else {
+                setIsAuthenticated(true); // Actualiza el estado global
+                //setUserId(userId); // Guarda el ID del usuario
+                navigate('/', { state: { isAuthenticated: true, isAdmin: false } });
+            }
+        }
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
