@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./DetallesProducto.css";
 import { FaTrash } from "react-icons/fa"; // Importar ícono de basura
+import { useCart } from "../../components/CartContext"; // Importar hook de contexto de carrito
 
 const urlsImagenes = {
     productos: {
@@ -49,12 +50,18 @@ const urlsImagenes = {
 
 export default function DetallesProducto({ producto, productos, onClose }) {
     // Filtrar toppings y bebidas de la base de datos
+    const { addToCart } = useCart(); // Consumir el contexto
     const toppings = productos.filter(item => item.idTipoProducto === 3 || item.idTipoProducto === 4);
     const bebidas = productos.filter(item => item.idTipoProducto === 2);
 
     const [selectedToppings, setSelectedToppings] = useState([]);
     const [selectedBebida, setSelectedBebida] = useState(null);
     const [cantidad, setCantidad] = useState(1);
+
+    const handleAddToCart = () => {
+        addToCart(producto, cantidad, selectedToppings, selectedBebida);
+        onClose();
+      };         
 
     // Manejar selección de toppings
     const handleToggleTopping = (topping) => {
@@ -81,11 +88,12 @@ export default function DetallesProducto({ producto, productos, onClose }) {
         if (cantidad > 1) setCantidad(cantidad - 1);
     };
 
-    // Agregar al carrito
+    {/* // Agregar al carrito
     const handleAddToCart = () => {
         alert(`Producto añadido al carrito con ${cantidad} unidades.`);
         onClose();
-    };
+    };*/}
+    
 
     // Renderizar opciones de selección con estilo similar a la imagen proporcionada
     const renderOptions = () => {
@@ -176,7 +184,9 @@ export default function DetallesProducto({ producto, productos, onClose }) {
                 <button className="cantidad-boton" onClick={handleIncrement}>+</button>
             </div>
 
-            <button className="add-to-cart" onClick={handleAddToCart}>Agregar al pedido</button>
+            <button className="add-to-cart" onClick={handleAddToCart}>
+                Agregar al pedido
+            </button>
         </div>
     );
 }

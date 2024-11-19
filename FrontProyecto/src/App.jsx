@@ -6,6 +6,7 @@ import Carta from './pages/Carta/Carta';
 import Contacto from './pages/Contacto/Contacto';
 import Validate from './components/validate';
 import Register from './components/Register';
+import Carrito from './pages/Carrito/Carrito';
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
                   {/* Rutas para Delivery y Recojo en tienda */}
                   <Route path="/delivery" element={<h1>Delivery</h1>} />
                   <Route path="/pickup" element={<h1>Login</h1>} />
+                  <Route path="/carrito" element={<Carrito />} /> {/* Nueva ruta */}
                 </Routes>
               </>
             }
