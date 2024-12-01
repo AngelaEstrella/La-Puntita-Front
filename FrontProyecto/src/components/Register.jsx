@@ -24,6 +24,7 @@ export default function Register() {
     const [dni, setDni] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState("");
+    const [reference, setReference] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -51,6 +52,7 @@ export default function Register() {
             dni,
             telefono: phone,
             direccion: address,
+            referencia: reference || "",
             email,
             passw: password,
         };
@@ -185,6 +187,13 @@ export default function Register() {
                             label="Dirección"
                             value={address}
                             onChange={(e) => handleInputChange(e, setAddress)}
+                        />
+                        <TextField
+                            margin="normal"
+                            fullWidth
+                            label="Referencia (Opcional)"
+                            value={reference}
+                            onChange={(e) => handleInputChange(e, setReference)}
                         />
                         <TextField
                             error={email.length > 0 && !isValidEmail(email)}

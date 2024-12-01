@@ -169,7 +169,7 @@ export default function Login() {
                             variant="contained"
                             sx={{ my: 2, backgroundColor: '#4caf50', '&:hover': { backgroundColor: '#66bb6a' } }}
                         >
-                            Autenticar
+                            Iniciar sesión
                         </Button>
                         <Grid container>
                             <Grid item>
