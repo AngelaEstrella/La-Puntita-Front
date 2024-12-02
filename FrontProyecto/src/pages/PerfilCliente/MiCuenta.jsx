@@ -1,186 +1,146 @@
-import React from "react";
-import { Box, Typography, Button, Grid, TextField } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
+
+import { Box, Typography, Button, Grid, TextField } from '@mui/material';
+import { AuthContext } from '../../services/AuthContext'; // Ruta corregida
+
+const url = "https://proyecto-pds-24-ii-production.up.railway.app/profile";
 
 const MiCuenta = () => {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        backgroundColor: "#f4f4f4",
-      }}
-    >
-      <Box
-        sx={{
-          width: "400px",
-          backgroundColor: "#fff",
-          padding: "24px",
-          borderRadius: "8px",
-          boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-          border: "1px solid #ddd",
-        }}
-      >
-        
-        <Box sx={{ textAlign: "center", marginBottom: "16px" }}>
-          <img
-            src="https://via.placeholder.com/100"
-            alt="Foto de perfil"
-            style={{ borderRadius: "50%" }}
-          />
-          <Typography variant="subtitle1" sx={{ marginTop: "8px" }}>
-            Foto de perfil
-          </Typography>
-        </Box>
+    const { userId } = useContext(AuthContext); // Obtén el ID del usuario logueado
+    const [userData, setUserData] = useState({}); // Estado para los datos del usuario
+    const [loading, setLoading] = useState(true);
 
-        
+    useEffect(() => {
+        if (!userId) {
+            console.warn("No hay un userId definido");
+        return;
+        }
+        fetch(`${url}?id_user=${userId}`)
+
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Error al obtener los datos del usuario");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setUserData(data); // Guarda los datos obtenidos
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error(error);
+                setLoading(false);
+            });
+    }, [userId]);
+
+    if (loading) {
+        return <Typography>Cargando...</Typography>;
+    }
+
+    return (
         <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: "16px",
-          }}
+            sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh",
+                backgroundColor: "#f4f4f4",
+            }}
         >
-          <Button
-            variant="outlined"
-            color="secondary"
-            sx={{ textTransform: "none" }}
-          >
-            Quitar foto
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ textTransform: "none" }}
-          >
-            Cambiar foto
-          </Button>
+            <Box
+                sx={{
+                    width: "400px",
+                    backgroundColor: "#fff",
+                    padding: "24px",
+                    borderRadius: "8px",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                    border: "1px solid #ddd",
+                }}
+            >
+                <Box sx={{ textAlign: "center", marginBottom: "16px" }}>
+                    <Typography variant="h5">Mi Cuenta</Typography>
+                </Box>
+  
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <TextField
+                            label="DNI"
+                            fullWidth
+                            disabled
+                            value={userData.dni || ""}
+                            variant="outlined"
+                            InputLabelProps={{ shrink: true }}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            label="Nombre"
+                            fullWidth
+                            disabled
+                            value={userData.nombre || ""}
+                            variant="outlined"
+                            InputLabelProps={{ shrink: true }}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            label="Apellido"
+                            fullWidth
+                            disabled
+                            value={userData.apellido || ""}
+                            variant="outlined"
+                            InputLabelProps={{ shrink: true }}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            label="Teléfono"
+                            fullWidth
+                            disabled
+                            value={userData.telefono || ""}
+                            variant="outlined"
+                            InputLabelProps={{ shrink: true }}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            label="Correo electrónico"
+                            fullWidth
+                            disabled
+                            value={userData.email || ""}
+                            variant="outlined"
+                            InputLabelProps={{ shrink: true }}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            label="Dirección"
+                            fullWidth
+                            disabled
+                            value={userData.direccion || ""}
+                            variant="outlined"
+                            InputLabelProps={{ shrink: true }}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            label="Referencia"
+                            fullWidth
+                            disabled
+                            value={userData.referencia || ""}
+                            variant="outlined"
+                            InputLabelProps={{ shrink: true }}
+                        />
+                    </Grid>
+                </Grid>
+                <Box sx={{ textAlign: "center", marginTop: "16px" }}>
+                    <Button variant="contained" color="success" sx={{ textTransform: "none" }}>
+                        Guardar cambios
+                    </Button>
+                </Box>
+            </Box>
         </Box>
-
-        
-        <Grid container spacing={2}>
-          <Grid item xs={8}>
-            <TextField
-              label="Nombre"
-              fullWidth
-              disabled
-              defaultValue="Ashely Bayona"
-              variant="outlined"
-              InputLabelProps={{ shrink: true }}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <Button
-              variant="outlined"
-              fullWidth
-              sx={{ textTransform: "none", height: "56px" }}
-            >
-              Editar
-            </Button>
-          </Grid>
-
-          <Grid item xs={8}>
-            <TextField
-              label="DNI"
-              fullWidth
-              disabled
-              defaultValue="73065779"
-              variant="outlined"
-              InputLabelProps={{ shrink: true }}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <Button
-              variant="outlined"
-              fullWidth
-              sx={{ textTransform: "none", height: "56px" }}
-            >
-              Editar
-            </Button>
-          </Grid>
-
-          <Grid item xs={8}>
-            <TextField
-              label="Correo electrónico"
-              fullWidth
-              disabled
-              defaultValue="ashley.bayonav@gmail.com"
-              variant="outlined"
-              InputLabelProps={{ shrink: true }}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <Button
-              variant="outlined"
-              fullWidth
-              sx={{ textTransform: "none", height: "56px" }}
-            >
-              Editar
-            </Button>
-          </Grid>
-
-          <Grid item xs={8}>
-            <TextField
-              label="Teléfono"
-              fullWidth
-              disabled
-              defaultValue="981258941"
-              variant="outlined"
-              InputLabelProps={{ shrink: true }}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <Button
-              variant="outlined"
-              fullWidth
-              sx={{ textTransform: "none", height: "56px" }}
-            >
-              Editar
-            </Button>
-          </Grid>
-
-          <Grid item xs={8}>
-            <TextField
-              label="Dirección"
-              fullWidth
-              disabled
-              defaultValue="Av. Oscar R. Benavides 5737"
-              variant="outlined"
-              InputLabelProps={{ shrink: true }}
-            />
-          </Grid>
-          <Grid item xs={4}>
-            <Button
-              variant="outlined"
-              fullWidth
-              sx={{ textTransform: "none", height: "56px" }}
-            >
-              Editar
-            </Button>
-          </Grid>
-        </Grid>
-
-       
-        <Box sx={{ textAlign: "center", marginTop: "16px" }}>
-          <Button
-            variant="contained"
-            color="success"
-            sx={{ textTransform: "none" }}
-          >
-            Guardar cambios
-          </Button>
-        </Box>
-      </Box>
-    </Box>
-  );
+    );
 };
 
 export default MiCuenta;
-
-
-/*const MiCuenta = () => {
-    return <h2>MiCuenta</h2>;
-  };
-  
-  export default MiCuenta;*/

@@ -1,15 +1,52 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+
 import { Box, Typography, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { AuthContext } from '../../services/AuthContext'; // Ruta corregida
+const url = "https://proyecto-pds-24-ii-production.up.railway.app/historial";
 
 const HistorialCompras = () => {
-  // Datos simulados para la tabla
-  const data = [
-    /*{ id: 1, nombre: "Producto 1", fecha: "2024-11-01" },
-    { id: 2, nombre: "Producto 2", fecha: "2024-11-05" },
-    { id: 3, nombre: "Producto 3", fecha: "2024-11-10" },
-    { id: 4, nombre: "Producto 4", fecha: "2024-11-15" },*/
-  ];
+  const { userId } = useContext(AuthContext); // Obtén el ID del usuario logueado
+  const [userData, setUserData] = useState([]); // Estado para los datos del usuario
+  const [loading, setLoading] = useState(true);
+ 
+  useEffect(()=> {
+    if(!userId){
+      console.warn("no hay userId definido");
+      return;
+    }
+
+    console.log(`${url}?iduser=${userId}`);
+    fetch(`${url}?iduser=${userId}`)
+
+              .then((response) => {
+                  if (!response.ok) {
+                      throw new Error("Error al obtener los compras del usuario");
+                  }
+                  return response.json();
+              })
+              .then((data) => {
+                  setUserData(data); // Guarda los datos obtenidos
+                  setLoading(false);
+              })
+              .catch((error) => {
+                  console.error(error);
+                  setLoading(false);
+              });
+  }, [userId]);
+  
+  if (loading) {
+    return <Typography>Cargando historial de compras...</Typography>;
+  }
+  
+  if (!userData.length) {
+    return <Typography>No se encontraron compras.</Typography>;
+  }
+  
+
+
+
+  
 
   return (
     <Box
@@ -23,7 +60,7 @@ const HistorialCompras = () => {
     >
       <Box
         sx={{
-          width: "600px",
+          width: "1200px",
           backgroundColor: "#fff",
           padding: "24px",
           borderRadius: "8px",
@@ -59,27 +96,31 @@ const HistorialCompras = () => {
           <Table>
             <TableHead>
               <TableRow sx={{ backgroundColor: "#f4f4f4" }}>
-                <TableCell sx={{ fontWeight: "bold" }}>Id</TableCell>
-                <TableCell sx={{ fontWeight: "bold" }}>Nombre</TableCell>
+                <TableCell sx={{ fontWeight: "bold" }}>IdFacturacion</TableCell>
+                <TableCell sx={{ fontWeight: "bold" }}>NombreDocumento</TableCell>
                 <TableCell sx={{ fontWeight: "bold" }}>Fecha</TableCell>
+                <TableCell sx={{ fontWeight: "bold" }}>CodigoBoleta</TableCell>
+                <TableCell sx={{ fontWeight: "bold" }}>ImporteVenta</TableCell>
+                <TableCell sx={{ fontWeight: "bold" }}>ImporteDelibery</TableCell>
+                <TableCell sx={{ fontWeight: "bold" }}>Igv</TableCell>
+                <TableCell sx={{ fontWeight: "bold" }}>ImporteTotal</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((row) => (
-                <TableRow key={row.id}>
-                  <TableCell>{row.id}</TableCell>
-                  <TableCell>{row.nombre}</TableCell>
+              {userData.map((row) => (
+                 <TableRow key={row.idFacturacion}>
+                  <TableCell>{row.idFacturacion}</TableCell>
+                  <TableCell>{row.tipoDocumento}</TableCell>
                   <TableCell>{row.fecha}</TableCell>
-                </TableRow>
-              ))}
-
-              {/* Filas vacías para completar el diseño */}
-              {[...Array(5)].map((_, index) => (
-                <TableRow key={`empty-${index}`}>
-                  <TableCell colSpan={3}>&nbsp;</TableCell>
-                </TableRow>
+                  <TableCell>{row.codigoBoleta}</TableCell>
+                  <TableCell>{row.importeVenta}</TableCell>
+                  <TableCell>{row.importeDelivery}</TableCell>
+                  <TableCell>{row.importeIGV}</TableCell>
+                  <TableCell>{row.importeTotal}</TableCell>
+              </TableRow>
               ))}
             </TableBody>
+
           </Table>
         </TableContainer>
       </Box>
@@ -88,10 +129,3 @@ const HistorialCompras = () => {
 };
 
 export default HistorialCompras;
-
-
-/*const HistorialCompras = () => {
-    return <h2>Historial de Compras</h2>;
-  };
-  
-  export default HistorialCompras;*/
