@@ -12,6 +12,10 @@ import MiCuenta from './pages/PerfilCliente/MiCuenta';
 import Seguridad from './pages/PerfilCliente/Seguridad';
 import HistorialCompras from './pages/PerfilCliente/HistorialCompras';
 import SeguimientoPedido from './pages/PerfilCliente/SeguimientoPedido';
+import MiCuentaAdmin from './pages/PerfilAdmin/MiCuentaAdmin'; // Cambiado a PerfilAdmin
+import Pedido from './pages/PerfilAdmin/Pedido'; // Agregado
+import ModificarCarta from './pages/PerfilAdmin/ModificarCarta';
+import AppBarAdmin from './pages/PerfilAdmin/AppBarAdmin';
 
 export default function App() {
   return (
@@ -55,6 +59,20 @@ export default function App() {
                     <Route path="/perfil/seguimiento-pedidos" element={<SeguimientoPedido />} />
                   </Routes>
                 
+                </>
+              }
+            />
+
+            <Route
+              path="/admin/*"
+              element={
+                <>
+                  <AppBarAdmin />
+                  <Routes>
+                    <Route path="/admin/mi-cuenta" element={<MiCuentaAdmin />} />
+                    <Route path="/admin/pedidos" element={<Pedido />} />
+                    <Route path="/admin/modificar-carta" element={<ModificarCarta />} />
+                  </Routes>
                 </>
               }
             />

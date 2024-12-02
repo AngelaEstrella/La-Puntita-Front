@@ -1,166 +1,171 @@
-import * as React from 'react';
-import { extendTheme, styled } from '@mui/material/styles';
-import PersonIcon from '@mui/icons-material/Person';
-import ListIcon from '@mui/icons-material/List';
-import EditIcon from '@mui/icons-material/Edit';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import Grid from '@mui/material/Grid';
-import { AppProvider } from '@toolpad/core/AppProvider';
-import { DashboardLayout } from '@toolpad/core/DashboardLayout';
-import { PageContainer } from '@toolpad/core/PageContainer';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import React from "react";
+import {
+  Box,
+  Typography,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+  Button,
+  AppBar,
+  Toolbar,
+} from "@mui/material";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import EditIcon from "@mui/icons-material/Edit"; // Icono para "Modificar Carta"
+import ExitToAppIcon from "@mui/icons-material/ExitToApp"; // Icono para "Salir"
+import { useLocation, useNavigate } from "react-router-dom"; // Manejo de rutas
+import MiCuentaAdmin from "./MiCuentaAdmin";
+import Pedido from "./Pedido";
+import ModificarCarta from "./ModificarCarta";
 
 const NAVIGATION = [
   {
-    kind: 'header',
-    title: 'Menú',
+    kind: "header",
+    title: "Gestión de Cuenta",
   },
   {
-    segment: 'admin',
-    title: 'Administrador',
-    icon: <PersonIcon />,
+    segment: "/admin/mi-cuenta",
+    title: "Mi Cuenta",
+    icon: <DashboardIcon />,
   },
   {
-    segment: 'pedidos',
-    title: 'Pedidos',
-    icon: <ListIcon />,
+    kind: "divider",
   },
   {
-    segment: 'modificar',
-    title: 'Modificar carta',
+    kind: "header",
+    title: "Gestión de Pedidos y Carta",
+  },
+  {
+    segment: "/admin/pedidos",
+    title: "Pedidos",
+    icon: <ShoppingCartIcon />,
+  },
+  {
+    segment: "/admin/modificar-carta",
+    title: "Modificar Carta",
     icon: <EditIcon />,
   },
   {
-    segment: 'salir',
-    title: 'Salir',
+    kind: "divider",
+  },
+  {
+    segment: "/login",
+    title: "Salir",
     icon: <ExitToAppIcon />,
+    isLogout: true, // Indica que es el botón de salir
   },
 ];
 
-const demoTheme = extendTheme({
-  colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: 'class',
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 900,
-      lg: 1200,
-      xl: 1536,
-    },
-  },
-});
+const AppBarAdmin = () => {
+  const location = useLocation(); // Obtener la ubicación actual
+  const navigate = useNavigate(); // Navegar entre rutas
 
-function useDemoRouter(initialPath) {
-  const [pathname, setPathname] = React.useState(initialPath);
+  // Función para manejar la navegación
+  const handleNavigation = (path, isLogout) => {
+    if (isLogout) {
+      console.log("Cerrando sesión...");
+      navigate(path); // Redirige al login
+    } else {
+      navigate(path); // Navega a la ruta seleccionada
+    }
+  };
 
-  const router = React.useMemo(() => {
-    return {
-      pathname,
-      searchParams: new URLSearchParams(),
-      navigate: (path) => setPathname(String(path)),
-    };
-  }, [pathname]);
-
-  return router;
-}
-
-const Skeleton = styled('div')(({ theme, height }) => ({
-  backgroundColor: theme.palette.action.hover,
-  borderRadius: theme.shape.borderRadius,
-  height,
-  content: '" "',
-}));
-
-export default function DashboardLayoutCustom(props) {
-  const { window } = props;
-  const router = useDemoRouter('/admin');
-
-  const demoWindow = window ? window() : undefined;
+  // Renderizar contenido según la ruta seleccionada
+  const renderContent = () => {
+    switch (location.pathname) {
+      case "/admin/mi-cuenta":
+        return <MiCuentaAdmin />;
+      case "/admin/pedidos":
+        return <Pedido />;
+      case "/admin/modificar-carta":
+        return <ModificarCarta />;
+      default:
+        return <Typography variant="h5">Bienvenido al Panel de Administración</Typography>;
+    }
+  };
 
   return (
-    <AppProvider
-      navigation={NAVIGATION}
-      router={router}
-      theme={demoTheme}
-      window={demoWindow}
-    >
-      <DashboardLayout>
-        <PageContainer>
-          <Grid container spacing={2}>
-            {/* Menú lateral */}
-            <Grid item xs={3}>
-              <div style={{ padding: '20px', textAlign: 'center' }}>
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="Perfil"
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    borderRadius: '50%',
-                    marginBottom: '10px',
-                  }}
-                />
-                <h3>Administrador</h3>
-              </div>
-            </Grid>
+    <Box sx={{ display: "flex", height: "100vh", flexDirection: "column" }}>
+      {/* AppBar superior */}
+      <AppBar position="static" sx={{ backgroundColor: "#f58ab8" }}>
+        <Toolbar>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            Panel de Administración
+          </Typography>
 
-            {/* Contenido principal */}
-            <Grid item xs={9}>
-              <h2>Foto de perfil</h2>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                <img
-                  src="https://via.placeholder.com/100"
-                  alt="Perfil"
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    borderRadius: '50%',
-                  }}
-                />
-                <div>
-                  <Button variant="contained" color="primary" style={{ marginRight: '10px' }}>
-                    Quitar foto
-                  </Button>
-                  <Button variant="contained" color="secondary">
-                    Cambiar foto
-                  </Button>
-                </div>
-              </div>
+          {/* Botón Cerrar Sesión */}
+          
+        </Toolbar>
+      </AppBar>
 
-              <div style={{ marginTop: '30px' }}>
-                {['Nombre', 'DNI', 'Correo electrónico', 'Teléfono', 'Dirección'].map((field) => (
-                  <div
-                    key={field}
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      marginBottom: '15px',
-                    }}
+      {/* Layout con barra lateral y contenido principal */}
+      <Box sx={{ display: "flex", height: "100%" }}>
+        {/* Navegación lateral */}
+        <Box
+          sx={{
+            width: "240px",
+            backgroundColor: "#f4f4f4",
+            padding: "16px",
+            borderRight: "1px solid #ddd",
+          }}
+        >
+          <Typography variant="h6" gutterBottom>
+            Navegación
+          </Typography>
+          <List>
+            {NAVIGATION.map((item, index) => {
+              if (item.kind === "divider") {
+                return <Divider key={index} sx={{ marginY: 1 }} />;
+              }
+
+              if (item.kind === "header") {
+                return (
+                  <Typography
+                    key={index}
+                    variant="subtitle2"
+                    color="textSecondary"
+                    sx={{ marginY: 1 }}
                   >
-                    <TextField
-                      label={field}
-                      variant="outlined"
-                      fullWidth
-                      disabled
-                      style={{ marginRight: '10px' }}
-                    />
-                    <Button variant="outlined" color="primary">
-                      Editar
-                    </Button>
-                  </div>
-                ))}
-              </div>
+                    {item.title}
+                  </Typography>
+                );
+              }
 
-              <Button variant="contained" color="success" fullWidth style={{ marginTop: '20px' }}>
-                Guardar cambios
-              </Button>
-            </Grid>
-          </Grid>
-        </PageContainer>
-      </DashboardLayout>
-    </AppProvider>
+              return (
+                <ListItem
+                  button
+                  key={index}
+                  onClick={() => handleNavigation(item.segment, item.isLogout)}
+                  sx={{
+                    textAlign: "center",
+                    backgroundColor:
+                      location.pathname === item.segment ? "#ddd" : "",
+                    "&:hover": { backgroundColor: "#eee" },
+                  }}
+                >
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.title} />
+                </ListItem>
+              );
+            })}
+          </List>
+        </Box>
+
+        {/* Contenido principal */}
+        <Box
+          sx={{
+            flexGrow: 1,
+            padding: "24px",
+            backgroundColor: "#fff",
+          }}
+        >
+          {renderContent()}
+        </Box>
+      </Box>
+    </Box>
   );
-}
+};
+
+export default AppBarAdmin;
