@@ -35,7 +35,7 @@ const Carrito = () => {
 
     try {
       // Llamada al backend para crear la sesión de pago
-      const response = await fetch("http://localhost:3001/api/create-checkout-session", {
+      const response = await fetch("https://proyecto-pds-24-ii-production.up.railway.app/create-checkout-session", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
