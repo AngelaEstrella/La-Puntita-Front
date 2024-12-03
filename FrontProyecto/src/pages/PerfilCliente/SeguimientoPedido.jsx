@@ -1,98 +1,116 @@
-import React from "react";
-import { Box, Typography, Stepper, Step, StepLabel } from "@mui/material";
-import { CheckCircle, ShoppingBag, LocalShipping, AssignmentTurnedIn } from "@mui/icons-material";
 
-// Paso actual del seguimiento
-const activeStep = 2; // Puedes cambiar este valor para probar diferentes estados
+import React, { useEffect, useState, useContext } from "react";
+import {
+  Box,
+  Typography,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  CircularProgress,
+} from "@mui/material";
+import { AuthContext } from "../../services/AuthContext";
 
-// Configuración de los pasos
-const steps = [
-  { label: "Recibimos el pedido", icon: <AssignmentTurnedIn /> },
-  { label: "Pedido confirmado", icon: <LocalShipping /> },
-  { label: "¡Tú pedido está listo!", icon: <ShoppingBag /> },
-  { label: "Pedido entregado", icon: <CheckCircle /> },
-];
+const url = "https://proyecto-pds-24-ii-production.up.railway.app/mi-cuenta/seguimiento-pedidos";
 
 const SeguimientoPedido = () => {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-        backgroundColor: "#f4f4f4",
-      }}
-    >
+  const [pedidos, setPedidos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { userId } = useContext(AuthContext); // Tomar userId desde AuthContext
+
+  useEffect(() => {
+    const fetchPedidos = async () => {
+      if (!userId) {
+        console.error("Usuario no autenticado");
+        return;
+      }
+      try {
+        const response = await fetch(`${url}?id=${userId}`);
+        if (!response.ok) {
+          throw new Error("Error al obtener los pedidos");
+        }
+        const data = await response.json();
+        setPedidos(data);
+      } catch (error) {
+        console.error("Error al cargar los datos:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPedidos();
+  }, [userId]);
+
+  if (loading) {
+    return (
       <Box
         sx={{
-          width: "500px",
-          backgroundColor: "#fff",
-          padding: "24px",
-          borderRadius: "8px",
-          boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-          border: "1px solid #ddd",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
         }}
       >
-        {/* Título */}
-        <Typography variant="h6" sx={{ marginBottom: "16px" }}>
-          Seguimiento de pedido
-        </Typography>
-
-        {/* Identificador del pedido */}
-        <Typography variant="subtitle1" sx={{ marginBottom: "24px", fontWeight: "bold" }}>
-          Pedido ####
-        </Typography>
-
-        {/* Progreso del pedido */}
-        <Stepper
-          activeStep={activeStep}
-          alternativeLabel
-          sx={{
-            "& .MuiStepConnector-root": {
-              top: "18px",
-            },
-          }}
-        >
-          {steps.map((step, index) => (
-            <Step key={index}>
-              <StepLabel
-                StepIconComponent={(props) => (
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      width: "40px",
-                      height: "40px",
-                      borderRadius: "50%",
-                      backgroundColor: props.completed || props.active ? "#62C3D9" : "#ddd",
-                      color: "#fff",
-                    }}
-                  >
-                    {step.icon}
-                  </Box>
-                )}
-              >
-                <Typography
-                  variant="caption"
-                  sx={{
-                    textAlign: "center",
-                    marginTop: "8px",
-                  }}
-                >
-                  {step.label}
-                </Typography>
-              </StepLabel>
-            </Step>
-          ))}
-        </Stepper>
+        <CircularProgress />
       </Box>
+    );
+  }
+
+  return (
+    <Box sx={{ padding: "24px" }}>
+      <Typography
+        variant="h5"
+        sx={{ marginBottom: "16px", textAlign: "center", color: "#f58ab8", fontWeight: "bold" }}
+      >
+        Seguimiento de Pedido
+      </Typography>
+
+      <Table
+        sx={{
+          minWidth: 650,
+          "& th, & td": {
+            textAlign: "center",
+          },
+          border: "1px solid #ddd",
+          borderRadius: "8px",
+        }}
+      >
+        <TableHead>
+          <TableRow sx={{ backgroundColor: "#f58ab8", color: "#fff" }}>
+            <TableCell align="center">Id Pedido</TableCell>
+            <TableCell align="center">Estado Entrega</TableCell>
+            <TableCell align="center">Hora Estimada</TableCell>
+            <TableCell align="center">Nombre del Repartidor</TableCell>
+            <TableCell align="center">Teléfono del Repartidor</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {pedidos.length > 0 ? (
+            pedidos.map((pedido) => (
+              <TableRow key={pedido.idFacturacion}>
+                <TableCell align="center">{pedido.idFacturacion}</TableCell>
+                <TableCell align="center">{pedido.estadoEntrega}</TableCell>
+                <TableCell align="center">{pedido.horaEstimada}</TableCell>
+                <TableCell align="center">{pedido.nombreRepartidor}</TableCell>
+                <TableCell align="center">{pedido.telefRepartidor}</TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell align="center" colSpan={5}>
+                No hay pedidos en proceso.
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
     </Box>
   );
 };
 
 export default SeguimientoPedido;
+
 
 
 /*const SeguimientoPedido = () => {
