@@ -11,6 +11,40 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/* Estilo para los select (combobox) */
+.carrito-container select {
+  width: 250px; /* Ancho del combobox */
+  padding: 10px 15px; /* Espaciado interno */
+  margin: 10px 0; /* Espaciado entre los elementos */
+  border: 2px solid #9e4099; /* Borde de color rosa */
+  border-radius: 5px; /* Bordes redondeados */
+  font-size: 1rem; /* Tamaño de fuente */
+  color: #333; /* Color de texto */
+  background-color: #fff; /* Fondo blanco */
+  transition: border-color 0.3s ease; /* Transición suave para el borde */
+}
+
+/* Efecto hover para los select */
+.carrito-container select:hover {
+  border-color: #7c327d; /* Cambio de borde al pasar el mouse */
+}
+
+/* Foco en el select */
+.carrito-container select:focus {
+  border-color: #9e4099; /* Borde morado al enfocar */
+  outline: none; /* Elimina el contorno predeterminado */
+}
+
+/* Etiquetas */
+.carrito-container label {
+  font-size: 1.2rem; /* Tamaño de la fuente */
+  color: #9e4099; /* Color rosa */
+  font-weight: bold; /* Negrita */
+  margin-bottom: 5px; /* Espacio debajo de la etiqueta */
+  display: block; /* Para que la etiqueta se muestre en una nueva línea */
+}
+
+
 /* Título del carrito */
 .carrito-title {
   font-size: 2.5rem;

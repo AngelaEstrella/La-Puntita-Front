@@ -9,7 +9,7 @@ const Contacto = () => {
   return (
     <div className="contacto-container">
         <div className="contacto-info">
-            <h2>#Contáctanos</h2>
+            <h2>Contáctanos</h2>
             <div className="social-links">
                 <div className="social-item-whatsapp">
                 <a
@@ -72,7 +72,16 @@ const Contacto = () => {
                 <p className="store-location">📍San Miguel: La Marina 2274</p>
                 <div className="store-image">
                 {/* Aquí puedes agregar una imagen o un mapa */}
-                <p>Imagen o dirección del local 2</p>
+                    <iframe
+                    src="https://www.google.com/maps/embed?pb=!3m2!1ses-419!2spe!4v1733219817144!5m2!1ses-419!2spe!6m8!1m7!1sjgmuiSkEFMaGLSSK7As7PA!2m2!1d-12.07771891939433!2d-77.0862424389505!3f36.83213752874789!4f0.7298096062605026!5f0.7820865974627469"
+                    width="200%"
+                    height="300"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Mapa Local Miraflores"
+                    ></iframe>
                 </div>
             </div>
         </div>
