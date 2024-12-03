@@ -33,6 +33,9 @@ export default function Login() {
             } else {
                 setIsAuthenticated(true); // Actualiza el estado global
                 //setUserId(userId); // Guarda el ID del usuario
+                if (userId) {
+                    localStorage.setItem("userId", userId); // Guardar userId en localStorage
+                }
                 navigate('/', { state: { isAuthenticated: true, isAdmin: false } });
             }
         }

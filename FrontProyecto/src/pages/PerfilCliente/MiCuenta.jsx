@@ -6,7 +6,8 @@ const urlFetch = "https://proyecto-pds-24-ii-production.up.railway.app/profile";
 const urlUpdate = "https://proyecto-pds-24-ii-production.up.railway.app/mi-cuenta";
 
 const MiCuenta = () => {
-  const { userId } = useContext(AuthContext); // Obtén el ID del usuario logueado
+  const { userId: contextUserId } = useContext(AuthContext); // Obtén el ID del usuario logueado
+  const userId = contextUserId || localStorage.getItem("userId");
   const [userData, setUserData] = useState({}); // Estado para los datos del usuario
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

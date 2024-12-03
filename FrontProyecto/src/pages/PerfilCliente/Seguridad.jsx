@@ -10,7 +10,8 @@ const Seguridad = () => {
   const [repContrasena, setRepContrasena] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState(false);
-  const { userId } = useContext(AuthContext);
+  const { userId: contextUserId } = useContext(AuthContext);
+  const userId = contextUserId || localStorage.getItem("userId");
 
   const handleChangeContrasena = async (e) => {
     e.preventDefault();

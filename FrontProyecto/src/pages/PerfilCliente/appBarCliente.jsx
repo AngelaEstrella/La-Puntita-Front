@@ -90,6 +90,7 @@ const AppBarCliente = () => {
   // Función para regresar al menú principal
   const handleBack = () => {
     navigate("/"); // Ir al menú principal
+    //navigate('/', { state: { isAuthenticated: true, isAdmin: false } });
   };
 
   return (

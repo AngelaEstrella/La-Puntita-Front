@@ -6,7 +6,8 @@ import { AuthContext } from '../../services/AuthContext'; // Ruta corregida
 const url = "https://proyecto-pds-24-ii-production.up.railway.app/historial";
 
 const HistorialCompras = () => {
-  const { userId } = useContext(AuthContext); // Obtén el ID del usuario logueado
+  const { userId: contextUserId } = useContext(AuthContext); // Obtén el ID del usuario logueado
+  const userId = contextUserId || localStorage.getItem("userId");
   const [userData, setUserData] = useState([]); // Estado para los datos del usuario
   const [loading, setLoading] = useState(true);
 
