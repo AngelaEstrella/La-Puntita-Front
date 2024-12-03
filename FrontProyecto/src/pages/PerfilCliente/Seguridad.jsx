@@ -24,9 +24,7 @@ const Seguridad = () => {
     try {
       // Datos a enviar al backend
       const bodyData = {
-        new_passw: {
-          passw: contrasena, // Nueva contraseña
-        },
+        passw: contrasena,
       };
 
       console.log("Datos enviados:", bodyData);
