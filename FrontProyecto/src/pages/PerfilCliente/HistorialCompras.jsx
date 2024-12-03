@@ -44,10 +44,6 @@ const HistorialCompras = () => {
   }
   
 
-
-
-  
-
   return (
     <Box
       sx={{

@@ -15,6 +15,12 @@ const Seguridad = () => {
   const handleChangeContrasena = async(e) => {
     e.preventDefault();
 
+    if (contrasena !== repContrasena) {
+      setMessage("Las contraseñas no coinciden");
+      setError(true);
+      return;
+    }
+
   try{
     const response = await fetch(url,{
       method : "PUT",
@@ -23,14 +29,14 @@ const Seguridad = () => {
 
       },
       body:JSON.stringify({
-        new_passw: {passw: contrasena},
+        new_passw:{passw: contrasena},
         id_user:userId,
       }),
     });
     const result = await response.json();
 
       if (response.ok) {
-        setMessage(result.message);
+        setMessage(result.message || "Contraseña actualizada correctamente");
         setError(false);
       } else {
         setMessage(result.detail || "Error al actualizar la contraseña");
@@ -67,6 +73,7 @@ const Seguridad = () => {
         </Typography>
 
         <form onSubmit={handleChangeContrasena}>
+          {/*Nueva contrasela*/}
           <Typography variant="subtitle1" sx={{ marginBottom: "8px" }}>
             Nueva contraseña
           </Typography>
@@ -79,7 +86,7 @@ const Seguridad = () => {
             sx={{ marginBottom: "16px" }}
           />
           <Divider sx={{ marginBottom: "16px" }} />
-
+          {/*Repetir contraseña contrasela*/}
           <Typography variant="subtitle1" sx={{ marginBottom: "8px" }}>
             Repetir contraseña
           </Typography>
@@ -92,7 +99,7 @@ const Seguridad = () => {
             sx={{ marginBottom: "16px" }}
           />
           <Divider sx={{ marginBottom: "16px" }} />
-
+          {/*Contraseña astual*/}
           <Typography variant="subtitle1" sx={{ marginBottom: "8px" }}>
             Contraseña actual
           </Typography>
@@ -106,6 +113,7 @@ const Seguridad = () => {
           />
           <Divider sx={{ marginBottom: "16px" }} />
 
+          {/* Mensajes de éxito o error */}
           {message && (
             <Typography
               variant="body2"
@@ -116,6 +124,7 @@ const Seguridad = () => {
             </Typography>
           )}
 
+          {/* Botón guardar */}
           <Box sx={{ textAlign: "right" }}>
             <Button type="submit" variant="contained" color="primary" sx={{ textTransform: "none" }}>
               Guardar cambios
