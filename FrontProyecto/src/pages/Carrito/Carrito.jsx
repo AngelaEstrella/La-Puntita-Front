@@ -79,6 +79,11 @@ const Carrito = () => {
         body: JSON.stringify(paymentData),
       });
 
+      //PARA GUARDAR EL ID DE USUARIO
+      if (userId) {
+        localStorage.setItem("userId", userId); // Guardar userId en localStorage
+      }
+
       const data = await response.json();
       if (data.url) {
         // Redirigir al cliente a Stripe

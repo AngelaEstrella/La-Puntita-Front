@@ -17,7 +17,8 @@ const url = "https://proyecto-pds-24-ii-production.up.railway.app/mi-cuenta/segu
 const SeguimientoPedido = () => {
   const [pedidos, setPedidos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { userId } = useContext(AuthContext); // Tomar userId desde AuthContext
+  const { userId: contextUserId } = useContext(AuthContext); // Tomar userId desde AuthContext
+  const userId = contextUserId || localStorage.getItem("userId"); // Si no está en el contexto, usar localStorage
 
   useEffect(() => {
     const fetchPedidos = async () => {

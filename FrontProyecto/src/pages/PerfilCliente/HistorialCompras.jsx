@@ -9,7 +9,7 @@ const HistorialCompras = () => {
   const { userId } = useContext(AuthContext); // Obtén el ID del usuario logueado
   const [userData, setUserData] = useState([]); // Estado para los datos del usuario
   const [loading, setLoading] = useState(true);
- 
+
   useEffect(()=> {
     if(!userId){
       console.warn("no hay userId definido");
