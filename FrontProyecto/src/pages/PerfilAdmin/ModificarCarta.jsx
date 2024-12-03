@@ -23,7 +23,7 @@ const ModificarCarta = () => {
   const [productos, setProductos] = useState([]);
   const [filteredProductos, setFilteredProductos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8; // Mostrar 8 productos por página
+  const itemsPerPage = 7; // Mostrar 8 productos por página
   const [formData, setFormData] = useState({
     nombreProducto: "",
     descripcion: "",
@@ -54,12 +54,18 @@ const ModificarCarta = () => {
 
   useEffect(() => {
     if (selectedCategory) {
-      const filtered = productos.filter(
-        (producto) =>
-          (selectedCategory === "alimento" && producto.idTipoProducto === 1) ||
-          (selectedCategory === "bebida" && producto.idTipoProducto === 2) ||
-          (selectedCategory === "topping" && producto.idTipoProducto === 3)
-      );
+      const filtered = productos.filter((producto) => {
+        if (selectedCategory === "alimento" && producto.idTipoProducto === 1) {
+          return true;
+        }
+        if (selectedCategory === "bebida" && producto.idTipoProducto === 2) {
+          return true;
+        }
+        if (selectedCategory === "topping" && producto.idTipoProducto === 3) {
+          return true;
+        }
+        return false;
+      });
       setFilteredProductos(filtered);
     } else {
       setFilteredProductos(productos);
@@ -73,8 +79,8 @@ const ModificarCarta = () => {
 
   const categoriaTexto = (idTipoProducto) => {
     if (idTipoProducto === 1) return "Alimento";
-    if (idTipoProducto === 2) return "Bebidas";
-    if (idTipoProducto === 3) return "Toppings";
+    if (idTipoProducto === 2) return "Bebida";
+    if (idTipoProducto === 3) return "Topping";
     return "Desconocido";
   };
 
@@ -240,8 +246,8 @@ const ModificarCarta = () => {
         >
           <MenuItem value="">Todas las Categorías</MenuItem>
           <MenuItem value="alimento">Alimento</MenuItem>
-          <MenuItem value="bebida">Bebidas</MenuItem>
-          <MenuItem value="topping">Toppings</MenuItem>
+          <MenuItem value="bebida">Bebida</MenuItem>
+          <MenuItem value="topping">Topping</MenuItem>
         </Select>
       </Box>
 
@@ -299,19 +305,30 @@ const ModificarCarta = () => {
         </TableBody>
       </Table>
 
-      <Box sx={{ display: "flex", justifyContent: "flex-end", marginTop: "16px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginTop: "16px",
+        }}
+      >
         <Button
           onClick={() => handlePageChange("prev")}
           disabled={currentPage === 1}
-          sx={{ marginRight: "8px" }}
+          sx={{ color: "#f58ab8", textTransform: "none" }}
         >
-          Anterior
+          ANTERIOR
         </Button>
+        <Typography sx={{ color: "#f58ab8" }}>
+          Página {currentPage} de {Math.ceil(filteredProductos.length / itemsPerPage)}
+        </Typography>
         <Button
           onClick={() => handlePageChange("next")}
           disabled={currentPage === Math.ceil(filteredProductos.length / itemsPerPage)}
+          sx={{ color: "#f58ab8", textTransform: "none" }}
         >
-          Siguiente
+          SIGUIENTE
         </Button>
       </Box>
 
@@ -346,8 +363,8 @@ const ModificarCarta = () => {
           >
             <MenuItem value="">Categoría</MenuItem>
             <MenuItem value={1}>Alimento</MenuItem>
-            <MenuItem value={2}>Bebidas</MenuItem>
-            <MenuItem value={3}>Toppings</MenuItem>
+            <MenuItem value={2}>Bebida</MenuItem>
+            <MenuItem value={3}>Topping</MenuItem>
           </Select>
           <TextField
             label="Descripción"
