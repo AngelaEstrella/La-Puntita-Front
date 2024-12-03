@@ -20,6 +20,42 @@ const Carrito = () => {
       return;
     }
 
+    //INTENTO AAAAAAAAAAAAAAA
+    // Reestructurar los datos del carrito para enviar cada ítem como producto independiente
+  const productos = cartItems.flatMap((product) => {
+    // Producto principal
+    const mainProduct = {
+      idProducto: product.idProducto,
+      cantidad: product.quantity,
+    };
+
+    // Toppings (si los hay)
+    const toppings = product.toppings.map((topping) => ({
+      idProducto: topping.idProducto,
+      cantidad: 1, // Generalmente cada topping es una unidad
+    }));
+
+    // Bebida (si existe)
+    const bebida = product.bebida
+      ? [{
+          idProducto: product.bebida.idProducto,
+          cantidad: 1, // Cada bebida se considera como una unidad
+        }]
+      : [];
+
+    // Retornar un array combinando el producto principal, toppings y bebida
+    return [mainProduct, ...toppings, ...bebida];
+  });
+
+  // Estructurar el payload completo para el backend
+  const paymentData = {
+    idUsuario: userId,
+    productos, // Array de todos los ítems del carrito
+    delivery: parseFloat(delivery), // Asegurar que sea un número
+    tipoDocumento: tipoDocumento,
+  };
+
+    /*
     // Crear el JSON según el formato esperado por el backend
     const paymentData = {
       idUsuario: userId,
@@ -29,7 +65,7 @@ const Carrito = () => {
       })),
       delivery: parseFloat(delivery), // Asegurar que sea un número
       tipoDocumento: tipoDocumento,
-    };
+    };*/
 
     console.log("Datos enviados al backend:", paymentData);
 
@@ -47,6 +83,7 @@ const Carrito = () => {
       if (data.url) {
         // Redirigir al cliente a Stripe
         window.location.href = data.url;
+        console.log("Datos enviados al backend:", paymentData);
       } else {
         console.error("Error en el backend:", data.detail || "Error desconocido");
         alert("Error al iniciar el pago. Intenta nuevamente.");
