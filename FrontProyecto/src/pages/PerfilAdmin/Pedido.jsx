@@ -12,6 +12,7 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  Button,
 } from "@mui/material";
 
 const Pedido = () => {
@@ -20,6 +21,8 @@ const Pedido = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [searchId, setSearchId] = useState("");
   const [filterEstado, setFilterEstado] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // Mostrar 10 pedidos por página
 
   const fetchFacturaciones = async () => {
     const urlFacturaciones = "https://proyecto-pds-24-ii-production.up.railway.app/facturaciones";
@@ -52,6 +55,7 @@ const Pedido = () => {
       fact.idFacturacion.toString().includes(id)
     );
     setFilteredData(filtered);
+    setCurrentPage(1); // Reiniciar a la primera página
   };
 
   const handleFilterEstado = (e) => {
@@ -62,6 +66,7 @@ const Pedido = () => {
       (fact) => fact.estadoPago.toLowerCase() === estado.toLowerCase()
     );
     setFilteredData(filtered);
+    setCurrentPage(1); // Reiniciar a la primera página
   };
 
   const handleFilterCombination = () => {
@@ -80,6 +85,7 @@ const Pedido = () => {
     }
 
     setFilteredData(filtered);
+    setCurrentPage(1); // Reiniciar a la primera página
   };
 
   const getNombreUsuario = (idUsuario) => {
@@ -95,6 +101,24 @@ const Pedido = () => {
   useEffect(() => {
     handleFilterCombination();
   }, [searchId, filterEstado]);
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const currentItems = filteredData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
     <Box sx={{ padding: "24px" }}>
@@ -137,7 +161,7 @@ const Pedido = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {filteredData.map((facturacion) => {
+          {currentItems.map((facturacion) => {
             const usuario = usuarios.find((u) => u.idUsuario === facturacion.idUsuario);
 
             return (
@@ -184,6 +208,19 @@ const Pedido = () => {
           })}
         </TableBody>
       </Table>
+
+      {/* Botones de paginación */}
+      <Box sx={{ display: "flex", justifyContent: "space-between", marginTop: "16px" }}>
+        <Button onClick={handlePrevPage} disabled={currentPage === 1}>
+          Anterior
+        </Button>
+        <Typography sx={{ alignSelf: "center" }}>
+          Página {currentPage} de {totalPages}
+        </Typography>
+        <Button onClick={handleNextPage} disabled={currentPage === totalPages}>
+          Siguiente
+        </Button>
+      </Box>
     </Box>
   );
 };
